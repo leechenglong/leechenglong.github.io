@@ -5,12 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Mac搭建基于Github的Octopress简易教程 - Lee</title>
+  <title>How to Build Octopress Based on Github - Lee</title>
   <meta name="author" content="LiChenglong">
 
   
-  <meta name="description" content="*注：确保安装了git和ruby1.9.3,通过brew安装rbenv然后用rbenv安装ruby。本地环境是在MAC OS X Yosemite10.10.2系统下部署的， 1.安装ruby brew install rbenv brew install ruby-build
-rbenv &hellip;">
+  <meta name="description" content="*notice：Make sure that you have installed Git and Ruby1.9.3. Then install rbenv via brew and use rbven to install Ruby. The local deployed &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -69,7 +68,7 @@ rbenv &hellip;">
   
   <header>
     
-      <h1 class="entry-title">Mac搭建基于Github的Octopress简易教程</h1>
+      <h1 class="entry-title">How to Build Octopress Based on Github</h1>
     
     
       <p class="meta">
@@ -88,62 +87,62 @@ rbenv &hellip;">
   </header>
 
 
-<div class="entry-content"><p>*注：确保安装了git和ruby1.9.3,通过brew安装rbenv然后用rbenv安装ruby。本地环境是在MAC OS X Yosemite10.10.2系统下部署的，</p>
+<div class="entry-content"><p>*notice：Make sure that you have installed Git and Ruby1.9.3. Then install rbenv via brew and use rbven to install Ruby. The local deployed environment is in the MAC OS X system under Yosemite 10.10.2.</p>
 
-<h4>1.安装ruby</h4>
+<h4>1.Install Ruby</h4>
 
 <p><li>brew install rbenv </li>
 <li>brew install ruby-build</li>
 <li>rbenv install 1.9.3-p0</li>
 <li>rbenv rehash</li></p>
 
-<h4>2.安装Octopress</h4>
+<h4>2.Install Octopress</h4>
 
 <p><li>git clone git://github.com/imathis/octopress.git octopress</li>
 <li>cd octopress</li>
 <li>gem install bundler</li>
 <li>rbenv rehash</li>
-<li>bundle install //会安装很多⋯⋯</li>
+<li>bundle install //will install a lot of package⋯⋯</li>
 <li>rake install</li></p>
 
-<h4>3.配置Octopress</h4>
+<h4>3.Configure Octopress</h4>
 
-<p>编辑 config.yml文件的url,title,subtitle,author。<br>
-最好把里面的twitter相关的信息全部删掉，否则由于GFW的原因，将会造成页面load很慢。同理，修改定制文件 /source/_includes/custom/head.html 把google的自定义字体去掉。</p>
+<p>Edit the URL/Title/Subtitle/Author in the file, called &ldquo;config.yml&rdquo;.<br>
+You&rsquo;d better delete all the infomation, related to Twitter, or the Page&rsquo;ll load slowly because of the GFW。By the same way, delete the words, customized by Google in the file, called &ldquo;head.html&rdquo;, which can be found in the path &ldquo;/source/_includes/custom/head.html&rdquo;.</p>
 
-<h4>4.配置Disqus插件</h4>
+<h4>4.Configure Disqus Plugin</h4>
 
-<p>Disqus是octopress内置的comments功能，编辑config.yml文件可以打开该功能，找到以下内容修改<br></p>
+<p>Disqus is a plugin, builded in Octopress, which can be opend in the file &ldquo;config.yml&rdquo;. For example: find out the next words,<br></p>
 
 <pre>#Disqus comments<br>
 disqus_short_name: <br>
 disqus_show_comment_count: false</pre>
 
 
-<p>填入注册<a href="https://disqus.com/">disqus</a>账号的名称，并将false修改为true。【disqus要和自己的username.github.com关联上】</p>
+<p>then fill in the <a href="https://disqus.com/">disqus</a> name and set disqus_show_comment_count true.【The Disqus name should be related to &lsquo;username.github.com&#8217;】</p>
 
-<h4>5.配置github相关</h4>
+<h4>5.Configure Things related to Github</h4>
 
-<p>在本机创建ssh
+<p>create ssh in local environment
 <li>cd ~/.ssh</li>
-<li>ssh-keygen -t rsa -C 你注册github时的email</li>
-<li>弹出Enter file in which to save the key (/Users/twer/.ssh/id_rsa):直接按空格</li>
-<li>弹出Enter passphrase (empty for no passphrase):输入你github账号的密码。Enter same passphrase again:再次输入你的密码。</li>
-<li>打开~/.ssh下的对应的.pub文件复制里面的全部内容。</li>
-<li>登陆github，选择Account Settings&ndash;>SSH Public Keys 添加ssh，把剪切板的内容复制到key输入框内直接保存。</li></p>
+<li>ssh-keygen -t rsa -C X //X is the regist Email in Github</li>
+<li>when throw out: Enter file in which to save the key (/Users/twer/.ssh/id_rsa): just clik the space button, then click enter</li>
+<li>when throw out: Enter passphrase (empty for no passphrase), just input your Github&rsquo;s password. Then if it shows: Enter same passphrase again, input your Github&rsquo;s password again.</li>
+<li>Open the corresponding file &lsquo;.pub&rsquo; int the path &lsquo;~/.ssh&rsquo; and copy all the contents in the file.</li>
+<li>sign in Github, change to Account Settings and SSH Public Keys, Then Add ssh and fill in the contents, copied just now and then save it.</li></p>
 
-<p>测试shh:<br>
->ssh <a href="&#x6d;&#x61;&#x69;&#x6c;&#x74;&#111;&#58;&#103;&#105;&#116;&#64;&#103;&#x69;&#116;&#x68;&#x75;&#x62;&#x2e;&#x63;&#111;&#109;">&#x67;&#x69;&#x74;&#x40;&#x67;&#x69;&#x74;&#x68;&#117;&#x62;&#46;&#x63;&#111;&#x6d;</a>
-<br>输出</p>
+<p>Test shh:<br>
+>ssh <a href="&#109;&#x61;&#105;&#x6c;&#116;&#111;&#58;&#103;&#x69;&#x74;&#x40;&#x67;&#105;&#x74;&#104;&#117;&#98;&#x2e;&#99;&#111;&#109;">&#x67;&#105;&#x74;&#x40;&#103;&#105;&#x74;&#104;&#117;&#98;&#46;&#x63;&#111;&#x6d;</a>
+<br>Output:</p>
 
 <pre>PTY allocation request failed on channel 0
 Hi username! You've successfully authenticated, but GitHub does not provide shell access.
 Connection to github.com closed.</pre>
 
 
-<p>代表成功</p>
+<p>It means success!</p>
 
-<h4>6.部署博客到github</h4>
+<h4>6.Deploy The Blog to Github</h4>
 
 <p>利用octopress的一个配置rake任务来自动配置上面创建的仓库：可以让我们方便的部署GitHub page。在终端输入如下命令：<br>
 >rake setup_github_pages<br>
@@ -172,7 +171,7 @@ hint: See the 'Note about fast-forwards' in 'git push --help' for details.</code
 <li>rake deploy</li>
 这样再次执行就不会报错了。</p>
 
-<h4>7.写博客</h4>
+<h4>7.Write Blog</h4>
 
 <p>通过命令<code>rake new_post[&ldquo;myTitle&rdquo;]</code>文章生成在目录下的source/_posts目录下。文章是markdown格式的。可以通过<a href="http://25.io/mou/">Mou</a>软件来编辑保存。
 写完后就可以部署更新文章到github上了
@@ -190,12 +189,12 @@ hint: See the 'Note about fast-forwards' in 'git push --help' for details.</code
 <li>rake new_page[super-awesome/page.html]</li>
 <code>#creates /source/super-awesome/page.html</code></p>
 
-<h4>8.更换主题</h4>
+<h4>8.Change Theme</h4>
 
 <p>主题位于 octopress/.theme 目录下，默认主题为 classic。 如果需要更改主题（可在网上查找），下载后将主题也放在.theme目录下即可，如果主题名字为blog_theme，那么安装主题时输入以下命令即可：<br>
 >rake install [&lsquo;blog_theme&rsquo;]</p>
 
-<h4>9.提交源码用于备份</h4>
+<h4>9.Submite codes for backup</h4>
 
 <p>前面提到的deploy只是部署博客代码到github上面，整个octopress并没有提交，为了保证在任何地方随时发布博客，而无需再次详细配置以保证跟github上的最新代码一致，可以将当前octopress的源码存放到github的source分支下：</p>
 
@@ -208,13 +207,13 @@ git push origin source
 
 
 
-<p><p>小结<p>
-本文主要是介绍如何利用octopress再github上搭建 一个博客，简述了完整步骤，同时介绍了博客涉及到的最常用的发布博文以及新建页面功能。
+<p><p>Summary<p>
+This article tells us how to setup a blog through Octopress based on Github and introduce the simple ways to post articles or new a page.
 <br><br><br></p>
 
 <hr />
 
-<p>感谢所有帮助过我的人</p>
+<p>Thanks all the people who make me grow!</p>
 </div>
 
 
@@ -223,7 +222,7 @@ git push origin source
       
   
 
-<span class="byline author vcard">Posted by <span class="fn">LiChenglong</span></span>
+<span class="byline author vcard">Posted by <span class="fn">lichenglong</span></span>
 
       
 
@@ -267,7 +266,7 @@ git push origin source
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2015/03/25/macda-jian-ji-yu-githubde-octopressjian-yi-jiao-cheng/">Mac搭建基于Github的Octopress简易教程</a>
+        <a href="/blog/2015/03/25/macda-jian-ji-yu-githubde-octopressjian-yi-jiao-cheng/">How to Build Octopress Based on Github</a>
       </li>
     
       <li class="post">
