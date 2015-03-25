@@ -9,9 +9,9 @@
   <meta name="author" content="LiChenglong">
 
   
-  <meta name="description" content="*注：确保安装了git和ruby1.9.3,通过brew安装rbenv然后用rbenv安装ruby。 安装ruby brew install rbenv brew install ruby-build
+  <meta name="description" content="*注：确保安装了git和ruby1.9.3,通过brew安装rbenv然后用rbenv安装ruby。 1.安装ruby brew install rbenv brew install ruby-build
 rbenv install 1.9.3-p0
-rbenv rehash 安装Octopress &hellip;">
+rbenv rehash 2. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -94,28 +94,28 @@ rbenv rehash 安装Octopress &hellip;">
 
   <div class="entry-content"><p>*注：确保安装了git和ruby1.9.3,通过brew安装rbenv然后用rbenv安装ruby。</p>
 
-<h5>安装ruby</h5>
+<h4>1.安装ruby</h4>
 
 <p><li>brew install rbenv </li>
 <li>brew install ruby-build</li>
 <li>rbenv install 1.9.3-p0</li>
 <li>rbenv rehash</li></p>
 
-<h5>安装Octopress</h5>
+<h4>2.安装Octopress</h4>
 
 <p><li>git clone git://github.com/imathis/octopress.git octopress</li>
 <li>cd octopress</li>
 <li>gem install bundler</li>
 <li>rbenv rehash</li>
-<li>bundle install</li>
+<li>bundle install //会安装很多⋯⋯</li>
 <li>rake install</li></p>
 
-<h5>配置Octopress</h5>
+<h4>3.配置Octopress</h4>
 
 <p>编辑 config.yml文件的url,title,subtitle,author。<br>
 最好把里面的twitter相关的信息全部删掉，否则由于GFW的原因，将会造成页面load很慢。同理，修改定制文件 /source/_includes/custom/head.html 把google的自定义字体去掉。</p>
 
-<h5>配置Disqus插件</h5>
+<h4>4.配置Disqus插件</h4>
 
 <p>Disqus是octopress内置的comments功能，编辑config.yml文件可以打开该功能，找到以下内容修改<br></p>
 
@@ -126,7 +126,7 @@ disqus_show_comment_count: false</pre>
 
 <p>填入注册<a href="https://disqus.com/">disqus</a>账号的名称，并将false修改为true。【disqus要和自己的username.github.com关联上】</p>
 
-<h5>配置github相关</h5>
+<h4>5.配置github相关</h4>
 
 <p>在本机创建ssh
 <li>cd ~/.ssh</li>
@@ -137,7 +137,7 @@ disqus_show_comment_count: false</pre>
 <li>登陆github，选择Account Settings&ndash;>SSH Public Keys 添加ssh，把剪切板的内容复制到key输入框内直接保存。</li></p>
 
 <p>测试shh:<br>
->ssh <a href="&#x6d;&#x61;&#105;&#108;&#x74;&#x6f;&#x3a;&#103;&#x69;&#116;&#64;&#103;&#x69;&#116;&#104;&#x75;&#x62;&#x2e;&#99;&#x6f;&#x6d;">&#x67;&#105;&#x74;&#x40;&#103;&#x69;&#x74;&#x68;&#117;&#98;&#46;&#99;&#111;&#109;</a>
+>ssh <a href="&#x6d;&#97;&#x69;&#108;&#x74;&#x6f;&#x3a;&#103;&#105;&#x74;&#64;&#103;&#105;&#116;&#104;&#117;&#x62;&#x2e;&#99;&#x6f;&#109;">&#x67;&#x69;&#116;&#x40;&#x67;&#x69;&#x74;&#104;&#117;&#98;&#x2e;&#x63;&#x6f;&#109;</a>
 <br>输出</p>
 
 <pre>PTY allocation request failed on channel 0
@@ -147,7 +147,7 @@ Connection to github.com closed.</pre>
 
 <p>代表成功</p>
 
-<h5>部署博客到github</h5>
+<h4>6.部署博客到github</h4>
 
 <p>利用octopress的一个配置rake任务来自动配置上面创建的仓库：可以让我们方便的部署GitHub page。在终端输入如下命令：<br>
 >rake setup_github_pages<br>
@@ -155,6 +155,7 @@ Connection to github.com closed.</pre>
 <br>输入以下命令部署博客
 <li>rake install //是安装Octopress默认主题的</li>
 <li>rake generate //是生成静态页面的，这两个命令是必须运行的</li>
+<li>rake preview //本地浏览,在浏览器输入<a href="http://localhost:4000/%E6%9D%A5%E8%AE%BF%E9%97%AE">http://localhost:4000/%E6%9D%A5%E8%AE%BF%E9%97%AE</a></li>
 <li>rake deploy //发布</li></p>
 
 <p>*注意：<br>
@@ -175,7 +176,7 @@ hint: See the 'Note about fast-forwards' in 'git push --help' for details.</code
 <li>rake deploy</li>
 这样再次执行就不会报错了。</p>
 
-<h5>写博客</h5>
+<h4>7.写博客</h4>
 
 <p>通过命令<code>rake new_post[&ldquo;myTitle&rdquo;]</code>文章生成在目录下的source/_posts目录下。文章是markdown格式的。可以通过<a href="http://25.io/mou/">Mou</a>软件来编辑保存。
 写完后就可以部署更新文章到github上了
@@ -192,6 +193,15 @@ hint: See the 'Note about fast-forwards' in 'git push --help' for details.</code
 <code>#creates /source/super-awesome/index.markdown</code>
 <li>rake new_page[super-awesome/page.html]</li>
 <code>#creates /source/super-awesome/page.html</code></p>
+
+<h4>8.更换主题</h4>
+
+<p>主题位于 octopress/.theme 目录下，默认主题为 classic。 如果需要更改主题（可在网上查找），下载后将主题也放在.theme目录下即可，如果主题名字为blog_theme，那么安装主题时输入以下命令即可：<br>
+>rake install [&lsquo;blog_theme&rsquo;]<br><br><br></p>
+
+<hr />
+
+<p>感谢所有帮助过我的人</p>
 </div>
   
   
