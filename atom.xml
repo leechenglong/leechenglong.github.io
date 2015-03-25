@@ -4,7 +4,7 @@
   <title><![CDATA[Lee]]></title>
   <link href="http://leechenglong.github.io/atom.xml" rel="self"/>
   <link href="http://leechenglong.github.io/"/>
-  <updated>2015-03-25T19:26:55+08:00</updated>
+  <updated>2015-03-25T20:19:39+08:00</updated>
   <id>http://leechenglong.github.io/</id>
   <author>
     <name><![CDATA[LiChenglong]]></name>
@@ -18,94 +18,98 @@
     <link href="http://leechenglong.github.io/blog/2015/03/25/macda-jian-ji-yu-githubde-octopressjian-yi-jiao-cheng/"/>
     <updated>2015-03-25T16:25:03+08:00</updated>
     <id>http://leechenglong.github.io/blog/2015/03/25/macda-jian-ji-yu-githubde-octopressjian-yi-jiao-cheng</id>
-    <content type="html"><![CDATA[<p>注：确保安装了git和ruby1.9.3,通过brew安装rbenv然后用rbenv安装ruby。</p>
+    <content type="html"><![CDATA[<p>*注：确保安装了git和ruby1.9.3,通过brew安装rbenv然后用rbenv安装ruby。</p>
 
-<p>安装ruby
-brew install rbenv
-brew install ruby-build
-rbenv install 1.9.3-p0
-rbenv rehash</p>
+<h5>安装ruby</h5>
 
-<p>安装Octopress
-git clone git://github.com/imathis/octopress.git octopress
-cd octopress
-gem install bundler
-rbenv rehash
-bundle install
-rake install</p>
+<p><li>brew install rbenv </li>
+<li>brew install ruby-build</li>
+<li>rbenv install 1.9.3-p0</li>
+<li>rbenv rehash</li></p>
 
-<p>配置Octopress
-编辑 config.yml文件的url,title,subtitle,author。</p>
+<h5>安装Octopress</h5>
 
-<p>最好把里面的twitter相关的信息全部删掉，否则由于GFW的原因，将会造成页面load很慢。同理，修改定制文件/source/_includes/custom/head.html 把google的自定义字体去掉。</p>
+<p><li>git clone git://github.com/imathis/octopress.git octopress</li>
+<li>cd octopress</li>
+<li>gem install bundler</li>
+<li>rbenv rehash</li>
+<li>bundle install</li>
+<li>rake install</li></p>
 
-<p>配置Disqus插件
-Disqus是octopress内置的comments功能，编辑config.yml文件可以打开该功能，找到以下内容修改</p>
+<h5>配置Octopress</h5>
 
-<h1>Disqus comments</h1>
+<p>编辑 config.yml文件的url,title,subtitle,author。<br>
+最好把里面的twitter相关的信息全部删掉，否则由于GFW的原因，将会造成页面load很慢。同理，修改定制文件 /source/_includes/custom/head.html 把google的自定义字体去掉。</p>
 
-<p>disqus_short_name:
+<h5>配置Disqus插件</h5>
+
+<p>Disqus是octopress内置的comments功能，编辑config.yml文件可以打开该功能，找到以下内容修改<br>
+<code>#Disqus comments<br>
+disqus_short_name: <br>
 disqus_show_comment_count: false
-填入注册disqus账号的名称，并将false修改为true。【disqus要和自己的username.github.com关联上】</p>
+</code><br>
+填入注册<a href="https://disqus.com/">disqus</a>账号的名称，并将false修改为true。【disqus要和自己的username.github.com关联上】</p>
 
-<p>2.配置github相关</p>
+<h5>配置github相关</h5>
 
 <p>在本机创建ssh
-cd ~/.ssh
-ssh-keygen -t rsa -C 你注册github时的email
-弹出Enter file in which to save the key (/Users/twer/.ssh/id_rsa):直接按空格
-弹出Enter passphrase (empty for no passphrase):输入你github账号的密码。Enter same passphrase again:再次输入你的密码。
-打开~/.ssh下的对应的.pub文件复制里面的全部内容。
-登陆github，选择Account Settings&ndash;>SSH Public Keys 添加ssh，把剪切板的内容复制到key输入框内直接保存。
-测试shh:ssh <a href="&#x6d;&#97;&#105;&#108;&#116;&#x6f;&#x3a;&#103;&#x69;&#x74;&#64;&#x67;&#x69;&#x74;&#104;&#x75;&#98;&#46;&#x63;&#111;&#x6d;">&#x67;&#105;&#116;&#x40;&#x67;&#x69;&#116;&#x68;&#117;&#x62;&#46;&#x63;&#x6f;&#109;</a>
-输出
-PTY allocation request failed on channel 0
+<li>cd ~/.ssh</li>
+<li>ssh-keygen -t rsa -C 你注册github时的email</li>
+<li>弹出Enter file in which to save the key (/Users/twer/.ssh/id_rsa):直接按空格</li>
+<li>弹出Enter passphrase (empty for no passphrase):输入你github账号的密码。Enter same passphrase again:再次输入你的密码。</li>
+<li>打开~/.ssh下的对应的.pub文件复制里面的全部内容。</li>
+<li>登陆github，选择Account Settings&ndash;>SSH Public Keys 添加ssh，把剪切板的内容复制到key输入框内直接保存。</li></p>
+
+<p>测试shh:<br>
+>ssh <a href="&#x6d;&#x61;&#x69;&#108;&#x74;&#x6f;&#58;&#103;&#x69;&#x74;&#64;&#x67;&#x69;&#116;&#104;&#x75;&#x62;&#46;&#x63;&#111;&#109;">&#103;&#105;&#116;&#64;&#103;&#x69;&#x74;&#104;&#117;&#98;&#x2e;&#x63;&#x6f;&#x6d;</a>
+<br>输出<br>
+<code>PTY allocation request failed on channel 0
 Hi username! You&rsquo;ve successfully authenticated, but GitHub does not provide shell access.
-Connection to github.com closed.
+Connection to github.com closed.</code><br>
 代表成功</p>
 
-<p>部署博客到github</p>
+<h5>部署博客到github</h5>
 
-<p>利用octopress的一个配置rake任务来自动配置上面创建的仓库：可以让我们方便的部署GitHub page。在终端输入如下命令：
-rake setup_github_pages
-弹出之后输入git@github.com:your_username/your_username.github.com.git不要用提示的io，我的是<a href="https://github.com/leechenglong/leechenglong.github.io">https://github.com/leechenglong/leechenglong.github.io</a>
-输入以下命令部署博客
-rake install //是安装Octopress默认主题的，
-rake generate //是生成静态页面的，这两个命令是必须运行的，
-rake deploy //发布
-注意：</p>
+<p>利用octopress的一个配置rake任务来自动配置上面创建的仓库：可以让我们方便的部署GitHub page。在终端输入如下命令：<br>
+>rake setup_github_pages<br>
+弹出之后输入格式如：git@github.com:your_username/your_username.github.com.git这样的地址，不要用提示的io【我的是<a href="https://github.com/leechenglong/leechenglong.github.io"><a href="https://github.com/leechenglong/leechenglong.github.io">https://github.com/leechenglong/leechenglong.github.io</a></a>】
+<br>输入以下命令部署博客
+<li>rake install //是安装Octopress默认主题的</li>
+<li>rake generate //是生成静态页面的，这两个命令是必须运行的</li>
+<li>rake deploy //发布</li></p>
 
-<p>第一次执行 rake deploy 的时候会报错如下：
-! [rejected]        master -> master (non-fast-forward)
+<p>*注意：<br>
+第一次执行 rake deploy 的时候会报错如下：<br>
+<code>! [rejected]        master -> master (non-fast-forward)
 error: failed to push some refs to &lsquo;<a href="https://github.com/leechenglong/leechenglong.github.io">https://github.com/leechenglong/leechenglong.github.io</a>&rsquo;
 hint: Updates were rejected because the tip of your current branch is behind
 hint: its remote counterpart. Merge the remote changes (e.g. &lsquo;git pull&rsquo;)
 hint: before pushing again.
-hint: See the &lsquo;Note about fast-forwards&rsquo; in &lsquo;git push &ndash;help&rsquo; for details.
-解决方法是手动进入<em>deploy目录手动强制push一次。
-cd octopress/</em>deploy
-git pull origin +master
-cd ..
-rake deploy
+hint: See the &lsquo;Note about fast-forwards&rsquo; in &lsquo;git push &ndash;help&rsquo; for details.</code><br>
+解决方法是手动进入<em>deploy目录手动强制push一次。<br>
+<li>cd octopress/</em>deploy</li>
+<li>git pull origin +master</li>
+<li>cd ..</li>
+<li>rake deploy</li>
 这样再次执行就不会报错了。</p>
 
-<p>写博客
-通过命令rake new_post[&ldquo;myTitle&rdquo;] 文章生成在目录下的source/_posts目录下。文章是markdown格式的。可以通过 Mou 软件来编辑保存。
+<h5>写博客</h5>
+
+<p>通过命令<code>rake new_post[&ldquo;myTitle&rdquo;]</code>文章生成在目录下的source/_posts目录下。文章是markdown格式的。可以通过<a href="http://25.io/mou/">Mou</a>软件来编辑保存。
 写完后就可以部署更新文章到github上了
-rake generate
-git add .
-git commit -am &ldquo;Some comment here.&rdquo;
-git push origin source
-rake deploy
-新建页面
-你可以在博客源目录下任意地方添加页面，Jekyll会自动拼接，对应的url地址也会根据页面路径自动生成 ，如果要添加 about.markdown ，那么就会生成 site.com/about.html ，如果你想要的url地址是 site.com/about/ ,你需要新建的页面应该是 about/index.markdown .同样的，octopress也有脚本完成这个操作。
-rake new_page[super-awesome]</p>
+<li>rake generate</li>
+<li>git add .</li>
+<li>git commit -am &ldquo;Some comment here.&rdquo; </li>
+<li>git push origin source</li>
+<li>rake deploy</li></p>
 
-<h1>creates /source/super-awesome/index.markdown</h1>
+<p>新建页面<br></p>
 
-<p>rake new_page[super-awesome/page.html]</p>
-
-<h1>creates /source/super-awesome/page.html</h1>
+<p>你可以在博客源目录下任意地方添加页面，Jekyll会自动拼接，对应的url地址也会根据页面路径自动生成 ，如果要添加 about.markdown ，那么就会生成 site.com/about.html ，如果你想要的url地址是 site.com/about/ ,你需要新建的页面应该是 about/index.markdown .同样的，octopress也有脚本完成这个操作。
+<li>rake new_page[super-awesome]</li>
+<code>#creates /source/super-awesome/index.markdown</code>
+<li>rake new_page[super-awesome/page.html]</li>
+<code>#creates /source/super-awesome/page.html</code></p>
 ]]></content>
   </entry>
   
