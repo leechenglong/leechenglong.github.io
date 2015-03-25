@@ -4,7 +4,7 @@
   <title><![CDATA[Lee]]></title>
   <link href="http://leechenglong.github.io/atom.xml" rel="self"/>
   <link href="http://leechenglong.github.io/"/>
-  <updated>2015-03-25T16:16:21+08:00</updated>
+  <updated>2015-03-25T16:25:17+08:00</updated>
   <id>http://leechenglong.github.io/</id>
   <author>
     <name><![CDATA[leechenglong]]></name>
@@ -14,24 +14,20 @@
 
   
   <entry>
+    <title type="html"><![CDATA[Mac搭建基于Github的Octopress简易教程]]></title>
+    <link href="http://leechenglong.github.io/blog/2015/03/25/macda-jian-ji-yu-githubde-octopressjian-yi-jiao-cheng/"/>
+    <updated>2015-03-25T16:25:03+08:00</updated>
+    <id>http://leechenglong.github.io/blog/2015/03/25/macda-jian-ji-yu-githubde-octopressjian-yi-jiao-cheng</id>
+    <content type="html"><![CDATA[
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[ReactiveCocoa]]></title>
     <link href="http://leechenglong.github.io/blog/2015/03/25/reactivecocoa/"/>
     <updated>2015-03-25T15:53:18+08:00</updated>
     <id>http://leechenglong.github.io/blog/2015/03/25/reactivecocoa</id>
-    <content type="html"><![CDATA[<h1>One category</h1>
-
-<p>categories: Sass</p>
-
-<h1>Multiple categories example 1</h1>
-
-<p>categories: [CSS3, Sass, Media Queries]</p>
-
-<h1>Multiple categories example 2</h1>
-
-<p>categories:
-- CSS3
-- Sass
-- Media Queries</p>
+    <content type="html"><![CDATA[
 ]]></content>
   </entry>
   
