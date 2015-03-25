@@ -4,7 +4,7 @@
   <title><![CDATA[Lee]]></title>
   <link href="http://leechenglong.github.io/atom.xml" rel="self"/>
   <link href="http://leechenglong.github.io/"/>
-  <updated>2015-03-25T20:46:03+08:00</updated>
+  <updated>2015-03-25T21:10:55+08:00</updated>
   <id>http://leechenglong.github.io/</id>
   <author>
     <name><![CDATA[LiChenglong]]></name>
@@ -18,7 +18,7 @@
     <link href="http://leechenglong.github.io/blog/2015/03/25/macda-jian-ji-yu-githubde-octopressjian-yi-jiao-cheng/"/>
     <updated>2015-03-25T16:25:03+08:00</updated>
     <id>http://leechenglong.github.io/blog/2015/03/25/macda-jian-ji-yu-githubde-octopressjian-yi-jiao-cheng</id>
-    <content type="html"><![CDATA[<p>*注：确保安装了git和ruby1.9.3,通过brew安装rbenv然后用rbenv安装ruby。</p>
+    <content type="html"><![CDATA[<p>*注：确保安装了git和ruby1.9.3,通过brew安装rbenv然后用rbenv安装ruby。本地环境是在MAC OS X Yosemite10.10.2系统下部署的，</p>
 
 <h4>1.安装ruby</h4>
 
@@ -63,7 +63,7 @@ disqus_show_comment_count: false</pre>
 <li>登陆github，选择Account Settings&ndash;>SSH Public Keys 添加ssh，把剪切板的内容复制到key输入框内直接保存。</li></p>
 
 <p>测试shh:<br>
->ssh <a href="&#x6d;&#97;&#x69;&#108;&#x74;&#x6f;&#x3a;&#103;&#105;&#x74;&#64;&#103;&#105;&#116;&#104;&#117;&#x62;&#x2e;&#99;&#x6f;&#109;">&#x67;&#x69;&#116;&#x40;&#x67;&#x69;&#x74;&#104;&#117;&#98;&#x2e;&#x63;&#x6f;&#109;</a>
+>ssh <a href="&#x6d;&#97;&#105;&#x6c;&#116;&#111;&#x3a;&#103;&#x69;&#116;&#64;&#x67;&#x69;&#116;&#104;&#117;&#98;&#x2e;&#99;&#111;&#x6d;">&#x67;&#105;&#116;&#64;&#103;&#x69;&#x74;&#104;&#117;&#98;&#46;&#99;&#111;&#x6d;</a>
 <br>输出</p>
 
 <pre>PTY allocation request failed on channel 0
@@ -123,7 +123,24 @@ hint: See the 'Note about fast-forwards' in 'git push --help' for details.</code
 <h4>8.更换主题</h4>
 
 <p>主题位于 octopress/.theme 目录下，默认主题为 classic。 如果需要更改主题（可在网上查找），下载后将主题也放在.theme目录下即可，如果主题名字为blog_theme，那么安装主题时输入以下命令即可：<br>
->rake install [&lsquo;blog_theme&rsquo;]<br><br><br></p>
+>rake install [&lsquo;blog_theme&rsquo;]</p>
+
+<h4>9.提交源码用于备份</h4>
+
+<p>前面提到的deploy只是部署博客代码到github上面，整个octopress并没有提交，为了保证在任何地方随时发布博客，而无需再次详细配置以保证跟github上的最新代码一致，可以将当前octopress的源码存放到github的source分支下：</p>
+
+<pre>
+git add .<br>
+git commit -m 'Initial source commit'<br>
+git push origin source
+</pre>
+
+
+
+
+<p><p>小结<p>
+本文主要是介绍如何利用octopress再github上搭建 一个博客，简述了完整步骤，同时介绍了博客涉及到的最常用的发布博文以及新建页面功能。
+<br><br><br></p>
 
 <hr />
 
