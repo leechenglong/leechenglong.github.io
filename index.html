@@ -117,11 +117,14 @@ rbenv rehash 安装Octopress &hellip;">
 
 <h5>配置Disqus插件</h5>
 
-<p>Disqus是octopress内置的comments功能，编辑config.yml文件可以打开该功能，找到以下内容修改<br>
-<code>#Disqus comments<br>
+<p>Disqus是octopress内置的comments功能，编辑config.yml文件可以打开该功能，找到以下内容修改<br></p>
+
+<pre>#Disqus comments<br>
 disqus_short_name: <br>
-disqus_show_comment_count: false
-</code><br>
+disqus_show_comment_count: false</pre>
+
+
+<p><br>
 填入注册<a href="https://disqus.com/">disqus</a>账号的名称，并将false修改为true。【disqus要和自己的username.github.com关联上】</p>
 
 <h5>配置github相关</h5>
@@ -135,12 +138,15 @@ disqus_show_comment_count: false
 <li>登陆github，选择Account Settings&ndash;>SSH Public Keys 添加ssh，把剪切板的内容复制到key输入框内直接保存。</li></p>
 
 <p>测试shh:<br>
->ssh <a href="&#x6d;&#x61;&#x69;&#108;&#x74;&#x6f;&#58;&#103;&#x69;&#x74;&#64;&#x67;&#x69;&#116;&#104;&#x75;&#x62;&#46;&#x63;&#111;&#109;">&#103;&#105;&#116;&#64;&#103;&#x69;&#x74;&#104;&#117;&#98;&#x2e;&#x63;&#x6f;&#x6d;</a>
-<br>输出<br>
-<code>PTY allocation request failed on channel 0
-Hi username! You&rsquo;ve successfully authenticated, but GitHub does not provide shell access.
-Connection to github.com closed.</code><br>
-代表成功</p>
+>ssh <a href="&#109;&#x61;&#105;&#108;&#x74;&#111;&#x3a;&#103;&#105;&#x74;&#64;&#103;&#105;&#116;&#x68;&#117;&#x62;&#x2e;&#99;&#111;&#109;">&#103;&#105;&#x74;&#64;&#x67;&#105;&#116;&#104;&#x75;&#x62;&#46;&#99;&#111;&#109;</a>
+<br>输出<br></p>
+
+<pre>PTY allocation request failed on channel 0
+Hi username! You've successfully authenticated, but GitHub does not provide shell access.
+Connection to github.com closed.</pre>
+
+
+<p>代表成功</p>
 
 <h5>部署博客到github</h5>
 
@@ -153,14 +159,17 @@ Connection to github.com closed.</code><br>
 <li>rake deploy //发布</li></p>
 
 <p>*注意：<br>
-第一次执行 rake deploy 的时候会报错如下：<br>
-<code>! [rejected]        master -> master (non-fast-forward)
-error: failed to push some refs to &lsquo;<a href="https://github.com/leechenglong/leechenglong.github.io">https://github.com/leechenglong/leechenglong.github.io</a>&rsquo;
+第一次执行 rake deploy 的时候会报错如下：<br></p>
+
+<pre><code>! [rejected]  master -> master (non-fast-forward)
+error: failed to push some refs to 'https://github.com/leechenglong/leechenglong.github.io'
 hint: Updates were rejected because the tip of your current branch is behind
-hint: its remote counterpart. Merge the remote changes (e.g. &lsquo;git pull&rsquo;)
+hint: its remote counterpart. Merge the remote changes (e.g. 'git pull')
 hint: before pushing again.
-hint: See the &lsquo;Note about fast-forwards&rsquo; in &lsquo;git push &ndash;help&rsquo; for details.</code><br>
-解决方法是手动进入<em>deploy目录手动强制push一次。<br>
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.</code></pre>
+
+
+<p>解决方法是手动进入<em>deploy目录手动强制push一次。<br>
 <li>cd octopress/</em>deploy</li>
 <li>git pull origin +master</li>
 <li>cd ..</li>
