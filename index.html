@@ -124,8 +124,7 @@ disqus_short_name: <br>
 disqus_show_comment_count: false</pre>
 
 
-<p><br>
-填入注册<a href="https://disqus.com/">disqus</a>账号的名称，并将false修改为true。【disqus要和自己的username.github.com关联上】</p>
+<p>填入注册<a href="https://disqus.com/">disqus</a>账号的名称，并将false修改为true。【disqus要和自己的username.github.com关联上】</p>
 
 <h5>配置github相关</h5>
 
@@ -138,8 +137,8 @@ disqus_show_comment_count: false</pre>
 <li>登陆github，选择Account Settings&ndash;>SSH Public Keys 添加ssh，把剪切板的内容复制到key输入框内直接保存。</li></p>
 
 <p>测试shh:<br>
->ssh <a href="&#109;&#x61;&#105;&#108;&#x74;&#111;&#x3a;&#103;&#105;&#x74;&#64;&#103;&#105;&#116;&#x68;&#117;&#x62;&#x2e;&#99;&#111;&#109;">&#103;&#105;&#x74;&#64;&#x67;&#105;&#116;&#104;&#x75;&#x62;&#46;&#99;&#111;&#109;</a>
-<br>输出<br></p>
+>ssh <a href="&#x6d;&#x61;&#105;&#108;&#x74;&#x6f;&#x3a;&#103;&#x69;&#116;&#64;&#103;&#x69;&#116;&#104;&#x75;&#x62;&#x2e;&#99;&#x6f;&#x6d;">&#x67;&#105;&#x74;&#x40;&#103;&#x69;&#x74;&#x68;&#117;&#98;&#46;&#99;&#111;&#109;</a>
+<br>输出</p>
 
 <pre>PTY allocation request failed on channel 0
 Hi username! You've successfully authenticated, but GitHub does not provide shell access.
@@ -169,7 +168,7 @@ hint: before pushing again.
 hint: See the 'Note about fast-forwards' in 'git push --help' for details.</code></pre>
 
 
-<p>解决方法是手动进入<em>deploy目录手动强制push一次。<br>
+<p>解决方法是手动进入<em>deploy目录手动强制push一次。
 <li>cd octopress/</em>deploy</li>
 <li>git pull origin +master</li>
 <li>cd ..</li>
