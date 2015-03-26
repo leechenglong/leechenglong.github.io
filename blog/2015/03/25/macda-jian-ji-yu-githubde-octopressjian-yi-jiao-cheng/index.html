@@ -9,7 +9,7 @@
   <meta name="author" content="LiChenglong">
 
   
-  <meta name="description" content="*Notice：Make sure that you have installed Git and Ruby1.9.3. Then install rbenv via brew and use rbven to install Ruby. The local deployed &hellip;">
+  <meta name="description" content="Notice：Make sure that you have installed Git and Ruby1.9.3. Then install rbenv via brew and use rbven to install Ruby. The local deployed environment &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -87,7 +87,7 @@
   </header>
 
 
-<div class="entry-content"><p>*Notice：Make sure that you have installed Git and Ruby1.9.3. Then install rbenv via brew and use rbven to install Ruby. The local deployed environment is in the MAC OS X system under Yosemite 10.10.2.</p>
+<div class="entry-content"><p>Notice：Make sure that you have installed Git and Ruby1.9.3. Then install rbenv via brew and use rbven to install Ruby. The local deployed environment is in the MAC OS X system under Yosemite 10.10.2.</p>
 
 <h4>1.Install Ruby</h4>
 
@@ -132,7 +132,7 @@ disqus_show_comment_count: false</pre>
 <li>sign in Github and change to Account Settings, select SSH Public Keys.Then Tap add ssh and fill in with the contents, which are copied just now and then save it.</li></p>
 
 <p>Test shh:<br>
->ssh <a href="&#109;&#x61;&#105;&#108;&#116;&#x6f;&#58;&#x67;&#105;&#x74;&#64;&#103;&#x69;&#116;&#x68;&#117;&#98;&#x2e;&#x63;&#111;&#x6d;">&#103;&#105;&#116;&#64;&#103;&#x69;&#x74;&#x68;&#x75;&#x62;&#x2e;&#99;&#x6f;&#109;</a>
+>ssh <a href="&#109;&#97;&#105;&#108;&#116;&#x6f;&#58;&#103;&#x69;&#x74;&#x40;&#103;&#105;&#x74;&#104;&#117;&#x62;&#46;&#x63;&#x6f;&#109;">&#103;&#105;&#116;&#x40;&#103;&#105;&#x74;&#104;&#x75;&#x62;&#x2e;&#x63;&#111;&#x6d;</a>
 <br>Output:</p>
 
 <pre>PTY allocation request failed on channel 0
@@ -144,17 +144,17 @@ Connection to github.com closed.</pre>
 
 <h4>6.Deploy The Blog to Github</h4>
 
-<p>利用octopress的一个配置rake任务来自动配置上面创建的仓库：可以让我们方便的部署GitHub page。在终端输入如下命令：<br>
->rake setup_github_pages<br>
-弹出之后输入格式如：git@github.com:your_username/your_username.github.com.git这样的地址，不要用提示的io【我的是<a href="https://github.com/leechenglong/leechenglong.github.io"><a href="https://github.com/leechenglong/leechenglong.github.io">https://github.com/leechenglong/leechenglong.github.io</a></a>】
-<br>输入以下命令部署博客
-<li>rake install //是安装Octopress默认主题的</li>
-<li>rake generate //是生成静态页面的，这两个命令是必须运行的</li>
-<li>rake preview //本地浏览,在浏览器输入<a href="http://localhost:4000/%E6%9D%A5%E8%AE%BF%E9%97%AE">http://localhost:4000/%E6%9D%A5%E8%AE%BF%E9%97%AE</a></li>
-<li>rake deploy //发布</li></p>
+<p>You can configure the warehouse, created in Github above, by the rake operation under Octopress. For example, we can deploy the Github page by typing the commands like:<br>
+<code>rake setup_github_pages</code><br>
+then it&rsquo;ll show the address like: <code>git@github.com:your_username/your_username.github.com.git</code>. Don&rsquo;t use this, just input yours【Mine is <a href="https://github.com/leechenglong/leechenglong.github.io"><a href="https://github.com/leechenglong/leechenglong.github.io">https://github.com/leechenglong/leechenglong.github.io</a></a>】
+<br>You can use the following commands to deploy your blog:
+<li>rake install  //Installing the default Octopress theme</li>
+<li>rake generate  //Creating a static page. The above and this command is necessary</li>
+<li>rake preview  //Preview in the local environment through typing &lsquo;<a href="http://localhost:4000/">http://localhost:4000/</a>&rsquo; in the browser</li>
+<li>rake deploy  //Deploy your pages or articles</li></p>
 
-<p>*注意：<br>
-第一次执行 rake deploy 的时候会报错如下：<br></p>
+<p>Attention：<br>
+Maybe the first time you run &lsquo;rake deploy&rsquo;, it&rsquo;ll show the error like:<br></p>
 
 <pre><code>! [rejected]  master -> master (non-fast-forward)
 error: failed to push some refs to 'https://github.com/leechenglong/leechenglong.github.io'
@@ -164,12 +164,12 @@ hint: before pushing again.
 hint: See the 'Note about fast-forwards' in 'git push --help' for details.</code></pre>
 
 
-<p>解决方法是手动进入<em>deploy目录手动强制push一次。
+<p>Don&rsquo;t worry! You can solve it by opening the folder named &lsquo;<em>deploy&rsquo; yourself and forch to push it。For example:
 <li>cd octopress/</em>deploy</li>
 <li>git pull origin +master</li>
 <li>cd ..</li>
 <li>rake deploy</li>
-这样再次执行就不会报错了。</p>
+Finally, you&rsquo;ll fine the error has dismissed.</p>
 
 <h4>7.Write Blog</h4>
 
@@ -204,15 +204,14 @@ git push origin source
 </pre>
 
 
+<h6>Summary</h6>
 
-
-<p><p>Summary<p>
-This article tells us how to setup a blog through Octopress based on Github and introduce the simple ways to post articles or new a page.
+<p>This article tells us how to setup a blog through Octopress based on Github and introduce the simple ways to post articles or new a page.
 <br><br><br></p>
 
 <hr />
 
-<p>Thanks all the people who make me grow up!</p>
+<p>Deeply thanks all the people who make me grow up!</p>
 </div>
 
 
