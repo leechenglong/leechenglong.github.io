@@ -4,7 +4,7 @@
   <title><![CDATA[Lee]]></title>
   <link href="http://leechenglong.github.io/atom.xml" rel="self"/>
   <link href="http://leechenglong.github.io/"/>
-  <updated>2015-03-26T09:07:30+08:00</updated>
+  <updated>2015-03-26T12:06:57+08:00</updated>
   <id>http://leechenglong.github.io/</id>
   <author>
     <name><![CDATA[LiChenglong]]></name>
@@ -18,7 +18,7 @@
     <link href="http://leechenglong.github.io/blog/2015/03/25/macda-jian-ji-yu-githubde-octopressjian-yi-jiao-cheng/"/>
     <updated>2015-03-25T16:25:03+08:00</updated>
     <id>http://leechenglong.github.io/blog/2015/03/25/macda-jian-ji-yu-githubde-octopressjian-yi-jiao-cheng</id>
-    <content type="html"><![CDATA[<p>*notice：Make sure that you have installed Git and Ruby1.9.3. Then install rbenv via brew and use rbven to install Ruby. The local deployed environment is in the MAC OS X system under Yosemite 10.10.2.</p>
+    <content type="html"><![CDATA[<p>*Notice：Make sure that you have installed Git and Ruby1.9.3. Then install rbenv via brew and use rbven to install Ruby. The local deployed environment is in the MAC OS X system under Yosemite 10.10.2.</p>
 
 <h4>1.Install Ruby</h4>
 
@@ -54,7 +54,7 @@ disqus_show_comment_count: false</pre>
 
 <h4>5.Configure Things related to Github</h4>
 
-<p>create ssh in the local environment
+<p>Create ssh in the local environment
 <li>cd ~/.ssh</li>
 <li>ssh-keygen -t rsa -C X //X is the regist Email in Github</li>
 <li>when it throws out: Enter file in which to save the key (/Users/twer/.ssh/id_rsa): just clik the space button and then click enter</li>
@@ -63,7 +63,7 @@ disqus_show_comment_count: false</pre>
 <li>sign in Github and change to Account Settings, select SSH Public Keys.Then Tap add ssh and fill in with the contents, which are copied just now and then save it.</li></p>
 
 <p>Test shh:<br>
->ssh <a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#58;&#103;&#x69;&#116;&#64;&#x67;&#105;&#x74;&#104;&#117;&#x62;&#x2e;&#x63;&#111;&#x6d;">&#103;&#x69;&#116;&#x40;&#103;&#105;&#116;&#104;&#117;&#x62;&#x2e;&#x63;&#111;&#x6d;</a>
+>ssh <a href="&#109;&#x61;&#105;&#108;&#116;&#x6f;&#58;&#x67;&#105;&#x74;&#64;&#103;&#x69;&#116;&#x68;&#117;&#98;&#x2e;&#x63;&#111;&#x6d;">&#103;&#105;&#116;&#64;&#103;&#x69;&#x74;&#x68;&#x75;&#x62;&#x2e;&#99;&#x6f;&#109;</a>
 <br>Output:</p>
 
 <pre>PTY allocation request failed on channel 0
@@ -104,17 +104,16 @@ hint: See the 'Note about fast-forwards' in 'git push --help' for details.</code
 
 <h4>7.Write Blog</h4>
 
-<p>通过命令<code>rake new_post[&ldquo;myTitle&rdquo;]</code>文章生成在目录下的source/_posts目录下。文章是markdown格式的。可以通过<a href="http://25.io/mou/">Mou</a>软件来编辑保存。
-写完后就可以部署更新文章到github上了
+<p>You can write an article in the folder &lsquo;source/_posts&rsquo; by the command like:<code>rake new_post[&ldquo;myTitle&rdquo;]</code>. The article is Markdown format and you can edit it through <a href="http://25.io/mou/">Mou</a>.After that you can deploy the article to Github by these steps:
 <li>rake generate</li>
 <li>git add .</li>
 <li>git commit -am &ldquo;Some comment here.&rdquo; </li>
 <li>git push origin source</li>
 <li>rake deploy</li></p>
 
-<p>新建页面<br></p>
+<h6>New a page</h6>
 
-<p>你可以在博客源目录下任意地方添加页面，Jekyll会自动拼接，对应的url地址也会根据页面路径自动生成 ，如果要添加 about.markdown ，那么就会生成 site.com/about.html ，如果你想要的url地址是 site.com/about/ ,你需要新建的页面应该是 about/index.markdown .同样的，octopress也有脚本完成这个操作。
+<p>You can add a page in your blog everywhere and Jekyll will generate a url according to the location of the page  automaticly. For example, if adding a page named about.markdown, it&rsquo;ll generate the url like &lsquo;site.com/about.html&rsquo;.Also if you want a url like &lsquo;site.com/about/&rsquo;, you just need to generate a page like about/index.markdown. Don&rsquo;t worry, Octopress can help you to do this like:
 <li>rake new_page[super-awesome]</li>
 <code>#creates /source/super-awesome/index.markdown</code>
 <li>rake new_page[super-awesome/page.html]</li>
@@ -122,12 +121,12 @@ hint: See the 'Note about fast-forwards' in 'git push --help' for details.</code
 
 <h4>8.Change Theme</h4>
 
-<p>主题位于 octopress/.theme 目录下，默认主题为 classic。 如果需要更改主题（可在网上查找），下载后将主题也放在.theme目录下即可，如果主题名字为blog_theme，那么安装主题时输入以下命令即可：<br>
->rake install [&lsquo;blog_theme&rsquo;]</p>
+<p>The themes is in the folder &lsquo;octopress/.theme&rsquo; and the default theme style is Classic. You can download themes in the Internet and put them in the folder &lsquo;.theme&rsquo;. If the theme name is blog_theme, you can install it by writing command in command center like:<br>
+<code>rake install [&lsquo;blog_theme&rsquo;]</code></p>
 
 <h4>9.Submite codes for backup</h4>
 
-<p>前面提到的deploy只是部署博客代码到github上面，整个octopress并没有提交，为了保证在任何地方随时发布博客，而无需再次详细配置以保证跟github上的最新代码一致，可以将当前octopress的源码存放到github的source分支下：</p>
+<p>The above steps can only deploy the blog codes to Github, not the Octopress source codes. So in order to write blog wherever and whenever you are, you can push the Octopress source codes to Github under the Source branch. It doesn&rsquo;t need to configure the details that you can keep the local Octopress source codes same with codes in Github after typing the commands like:</p>
 
 <pre>
 git add .<br>
