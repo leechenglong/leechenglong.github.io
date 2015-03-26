@@ -9,7 +9,12 @@
   <meta name="author" content="LiChenglong">
 
   
-  <meta name="description" content="Notice：Make sure that you have installed Git and Ruby1.9.3. Then install rbenv via brew and use rbven to install Ruby. The local deployed environment &hellip;">
+  <meta name="description" content="目录 1.Install Ruby
+2.Install Octopress
+3.Configure Octopress
+4.Configure Disqus Plugin
+5.Configure Things related to Github
+6.Deploy The Blog to &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -88,16 +93,28 @@
   </header>
 
 
-<div class="entry-content"><p>Notice：Make sure that you have installed Git and Ruby1.9.3. Then install rbenv via brew and use rbven to install Ruby. The local deployed environment is in the MAC OS X system under Yosemite 10.10.2.</p>
+<div class="entry-content"><h4>目录</h4>
 
-<h4>1.Install Ruby</h4>
+<p><a href="#h_1">1.Install Ruby</a></br>
+<a href="#h_2">2.Install Octopress</a></br>
+<a href="#h_3">3.Configure Octopress</a></br>
+<a href="#h_4">4.Configure Disqus Plugin</a></br>
+<a href="#h_5">5.Configure Things related to Github</a></br>
+<a href="#h_6">6.Deploy The Blog to Github</a></br>
+<a href="#h_7">7.Write Blog</a></br>
+<a href="#h_8">8.Change Theme</a></br>
+<a href="#h_9">9.Submite codes for backup</a></br></p>
+
+<p>Notice：Make sure that you have installed Git and Ruby1.9.3. Then install rbenv via brew and use rbven to install Ruby. The local deployed environment is in the MAC OS X system under Yosemite 10.10.2.</p>
+
+<h4><a name="h_1">1.Install Ruby</a></h4>
 
 <p><li>brew install rbenv </li>
 <li>brew install ruby-build</li>
 <li>rbenv install 1.9.3-p0</li>
 <li>rbenv rehash</li></p>
 
-<h4>2.Install Octopress</h4>
+<h4><a name="h_2">2.Install Octopress</a></h4>
 
 <p><li>git clone git://github.com/imathis/octopress.git octopress</li>
 <li>cd octopress</li>
@@ -106,12 +123,12 @@
 <li>bundle install //will install a lot of package⋯⋯</li>
 <li>rake install</li></p>
 
-<h4>3.Configure Octopress</h4>
+<h4><a name="h_3">3.Configure Octopress</a></h4>
 
 <p>Edit URL/Title/Subtitle/Author in the file, called &ldquo;config.yml&rdquo;.<br>
 You&rsquo;d better delete all the infomation, related to Twitter, or the Page&rsquo;ll be loaded slowly because of the GFW。By the same way, delete the words, customized by Google in the file, called &ldquo;head.html&rdquo;, which can be found in the path &ldquo;/source/_includes/custom/head.html&rdquo;.</p>
 
-<h4>4.Configure Disqus Plugin</h4>
+<h4><a name="h_4">4.Configure Disqus Plugin</a></h4>
 
 <p>Disqus is a plugin, builded in Octopress, which can be opend in the file &ldquo;config.yml&rdquo;. For example: find out the next words,<br></p>
 
@@ -122,7 +139,7 @@ disqus_show_comment_count: false</pre>
 
 <p>then fill in with <a href="https://disqus.com/">disqus</a> name and set disqus_show_comment_count true.【The Disqus name should be related to &lsquo;username.github.com&#8217;】</p>
 
-<h4>5.Configure Things related to Github</h4>
+<h4><a name="h_5">5.Configure Things related to Github</a></h4>
 
 <p>Create ssh in the local environment
 <li>cd ~/.ssh</li>
@@ -133,7 +150,7 @@ disqus_show_comment_count: false</pre>
 <li>sign in Github and change to Account Settings, select SSH Public Keys.Then Tap add ssh and fill in with the contents, which are copied just now and then save it.</li></p>
 
 <p>Test shh:<br>
->ssh <a href="&#109;&#97;&#105;&#x6c;&#116;&#x6f;&#x3a;&#x67;&#105;&#116;&#64;&#103;&#x69;&#116;&#x68;&#x75;&#x62;&#46;&#99;&#x6f;&#x6d;">&#103;&#105;&#116;&#64;&#103;&#105;&#116;&#104;&#117;&#98;&#46;&#99;&#111;&#109;</a>
+>ssh <a href="&#x6d;&#97;&#x69;&#108;&#116;&#111;&#x3a;&#x67;&#x69;&#116;&#x40;&#103;&#105;&#x74;&#x68;&#x75;&#x62;&#x2e;&#x63;&#x6f;&#109;">&#x67;&#105;&#116;&#64;&#x67;&#x69;&#x74;&#x68;&#117;&#98;&#46;&#99;&#x6f;&#109;</a>
 <br>Output:</p>
 
 <pre>PTY allocation request failed on channel 0
@@ -143,7 +160,7 @@ Connection to github.com closed.</pre>
 
 <p>It means success!</p>
 
-<h4>6.Deploy The Blog to Github</h4>
+<h4><a name="h_6">6.Deploy The Blog to Github</a></h4>
 
 <p>You can configure the warehouse, created in Github above, by the rake operation under Octopress. For example, we can deploy the Github page by typing the commands like:<br>
 <code>rake setup_github_pages</code><br>
@@ -172,7 +189,7 @@ hint: See the 'Note about fast-forwards' in 'git push --help' for details.</code
 <li>rake deploy</li>
 Finally, you&rsquo;ll fine the error has dismissed.</p>
 
-<h4>7.Write Blog</h4>
+<h4><a name="h_7">7.Write Blog</a></h4>
 
 <p>You can write an article in the folder &lsquo;source/_posts&rsquo; by the command like:<code>rake new_post[&ldquo;myTitle&rdquo;]</code>. The article is Markdown format and you can edit it through <a href="http://25.io/mou/">Mou</a>.After that you can deploy the article to Github by these steps:
 <li>rake generate</li>
@@ -189,12 +206,12 @@ Finally, you&rsquo;ll fine the error has dismissed.</p>
 <li>rake new_page[super-awesome/page.html]</li>
 <code>#creates /source/super-awesome/page.html</code></p>
 
-<h4>8.Change Theme</h4>
+<h4><a name="h_8">8.Change Theme</a></h4>
 
 <p>The themes is in the folder &lsquo;octopress/.theme&rsquo; and the default theme style is Classic. You can download themes in the Internet and put them in the folder &lsquo;.theme&rsquo;. If the theme name is blog_theme, you can install it by writing command in command center like:<br>
 <code>rake install [&lsquo;blog_theme&rsquo;]</code></p>
 
-<h4>9.Submite codes for backup</h4>
+<h4><a name="h_9">9.Submite codes for backup</a></h4>
 
 <p>The above steps can only deploy the blog codes to Github, not the Octopress source codes. So in order to write blog wherever and whenever you are, you can push the Octopress source codes to Github under the Source branch. It doesn&rsquo;t need to configure the details that you can keep the local Octopress source codes same with codes in Github after typing the commands like:</p>
 

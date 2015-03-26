@@ -92,6 +92,18 @@
 
 <p>ReactiveCocoa（RAC）是一个基于Functional Reactive Programming编程思想的Objective-C实现的由Github开源的应用于iOS和OS X开发的新框架。它主要吸取了.Net的 Reactive Extensions的设计和实现。通常我们在编写iOS代码时，大部分代码都是在响应一些事件：按钮点击、接收网络消息、属性变化等等，但是这些事件在代码中的表现形式却不一样：如target-action、代理方法、KVO、回调或其它，这时ReactiveCocoa的作用就体现出来了。它的目的就是定义一个统一的事件处理接口，这样事件处理可以非常简单地进行链接、过滤和组合。</p>
 
+<h4>ReactiveCocoa的特点</h4>
+
+<p>ReactiveCocoa的核心是Signal。Signal是信号，是一个事件流。Signal获取到数据后，会调用Subscriber的sendNext, sendComplete, sendError方法来传送数据给Subscriber。Signal是很灵活的，它可以被修改(map)，过滤(filter)，叠加(combine)，串联(chain)。<br>
+这样讲得也太过于抽象了吧^_^，我自己也不知道自己在说什么。<br>
+其实ReactiveCocoa提供了一个标准的接口来处理不同的事件，这个接口就是信号，由RACSignal类表示，也就是Singal。而这些不同的事件流就是KVO、UI Event、Network request、Async work的处理。比如在你需要用到Notification的时候，你完全可以使用RACSignal来替代Notification，observer在接收到信息回调这个过程就相当于Signal调用Subscriber的sendNext的过程。<br>
+现在对于ReactiveCocoa的Signal好像有点了解了，哈哈！<br>
+前面也说了，ReactiveCocoa是一个基于Functional Reactive Programming编程思想的Objective-C实现开源的第三方库，也就是：<pre>Functional Reactive Programming = Functional programming + Reactive Programming</pre>
+所以RAC的两个重要特性是：
+<li>函数式编程：这也是一种编程方法，或者说是编程模式，同面向过程的编程，以及面向对象的编程、面向逻辑的编程一样。它利用高阶函数，即将函数作为其它函数的参数。</li>
+<li>响应式编程：在计算机中，响应式编程是一种面向数据流和变化传播的编程范式。这意味着可以在编程语言中很方便地表达静态或动态的数据流，而相关的计算模型会自动将变化的值通过数据流进行传播。例如，在命令式编程环境中，a = b + c 表示将表达式的结果赋给a，而之后改变b或c的值不会影响a。但在响应式编程中，a的值会随着b或c的更新而更新。</li>
+Reactive的特性使得可以随时响应变化。Functional的特性使得他们可以串起来。ReactiveCocoa就是他们的结合体。</p>
+
 <h4>ReactiveCocoa的引入</h4>
 
 <p>添加ReactiveCocoa框架到我们工程的最简单的方法是使用Cocoapods。我们新建一个项目LCLStudyProject。在控制进入该项目下，输入以下命令：<code>pod init</code> 它会自动创建一个名为Podfile的空文件,打开并添加如下信息:</p>
@@ -182,18 +194,6 @@ Integrating client project
 
 
 <p>基本引入使用讲得差不多了，我们继续吧！！！</p>
-
-<h4>ReactiveCocoa的特点</h4>
-
-<p>ReactiveCocoa的核心是Signal。Signal是信号，是一个事件流。Signal获取到数据后，会调用Subscriber的sendNext, sendComplete, sendError方法来传送数据给Subscriber。Signal是很灵活的，它可以被修改(map)，过滤(filter)，叠加(combine)，串联(chain)。<br>
-这样讲得也太过于抽象了吧^_^，我自己也不知道自己在说什么。<br>
-其实ReactiveCocoa提供了一个标准的接口来处理不同的事件，这个接口就是信号，由RACSignal类表示，也就是Singal。而这些不同的事件流就是KVO、UI Event、Network request、Async work的处理。比如在你需要用到Notification的时候，你完全可以使用RACSignal来替代Notification，observer在接收到信息回调这个过程就相当于Signal调用Subscriber的sendNext的过程。<br>
-现在对于ReactiveCocoa的Signal好像有点了解了，哈哈！<br>
-前面也说了，ReactiveCocoa是一个基于Functional Reactive Programming编程思想的Objective-C实现开源的第三方库，也就是：<pre>Functional Reactive Programming = Functional programming + Reactive Programming</pre>
-所以RAC的两个重要特性是：
-<li>函数式编程：这也是一种编程方法，或者说是编程模式，同面向过程的编程，以及面向对象的编程、面向逻辑的编程一样。它利用高阶函数，即将函数作为其它函数的参数。</li>
-<li>响应式编程：在计算机中，响应式编程是一种面向数据流和变化传播的编程范式。这意味着可以在编程语言中很方便地表达静态或动态的数据流，而相关的计算模型会自动将变化的值通过数据流进行传播。例如，在命令式编程环境中，a = b + c 表示将表达式的结果赋给a，而之后改变b或c的值不会影响a。但在响应式编程中，a的值会随着b或c的更新而更新。</li>
-Reactive的特性使得可以随时响应变化。Functional的特性使得他们可以串起来。ReactiveCocoa就是他们的结合体。</p>
 
 <h4>ReactiveCocoa试图解决什么问题</h4>
 
