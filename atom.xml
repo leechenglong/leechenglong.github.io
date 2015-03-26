@@ -4,7 +4,7 @@
   <title><![CDATA[Lee]]></title>
   <link href="http://leechenglong.github.io/atom.xml" rel="self"/>
   <link href="http://leechenglong.github.io/"/>
-  <updated>2015-03-27T00:21:16+08:00</updated>
+  <updated>2015-03-27T00:27:46+08:00</updated>
   <id>http://leechenglong.github.io/</id>
   <author>
     <name><![CDATA[LiChenglong]]></name>
@@ -75,7 +75,7 @@ disqus_show_comment_count: false</pre>
 <li>sign in Github and change to Account Settings, select SSH Public Keys.Then Tap add ssh and fill in with the contents, which are copied just now and then save it.</li></p>
 
 <p>Test shh:<br>
->ssh <a href="&#x6d;&#97;&#x69;&#108;&#116;&#111;&#x3a;&#x67;&#x69;&#116;&#x40;&#103;&#105;&#x74;&#x68;&#x75;&#x62;&#x2e;&#x63;&#x6f;&#109;">&#x67;&#105;&#116;&#64;&#x67;&#x69;&#x74;&#x68;&#117;&#98;&#46;&#99;&#x6f;&#109;</a>
+>ssh <a href="&#109;&#x61;&#x69;&#x6c;&#116;&#x6f;&#58;&#103;&#x69;&#116;&#64;&#103;&#x69;&#x74;&#x68;&#x75;&#x62;&#x2e;&#99;&#111;&#109;">&#x67;&#x69;&#116;&#64;&#103;&#x69;&#x74;&#104;&#117;&#98;&#x2e;&#x63;&#111;&#109;</a>
 <br>Output:</p>
 
 <pre>PTY allocation request failed on channel 0
@@ -163,11 +163,19 @@ git push origin source
     <link href="http://leechenglong.github.io/blog/2015/03/25/reactivecocoa/"/>
     <updated>2015-03-25T15:53:18+08:00</updated>
     <id>http://leechenglong.github.io/blog/2015/03/25/reactivecocoa</id>
-    <content type="html"><![CDATA[<h4>什么是ReactiveCocoa</h4>
+    <content type="html"><![CDATA[<h4>目录</h4>
+
+<p><a href="#h_1">什么是ReactiveCocoa</a></br>
+<a href="#h_2">ReactiveCocoa的特点</a></br>
+<a href="#h_3">ReactiveCocoa试图解决什么问题</a></br>
+<a href="#h_4">ReactiveCocoa的引入</a></br>
+<a href="#h_5">ReactiveCocoa的使用</a></br><br></p>
+
+<h4><a name="h_1">什么是ReactiveCocoa</a></h4>
 
 <p>ReactiveCocoa（RAC）是一个基于Functional Reactive Programming编程思想的Objective-C实现的由Github开源的应用于iOS和OS X开发的新框架。它主要吸取了.Net的 Reactive Extensions的设计和实现。通常我们在编写iOS代码时，大部分代码都是在响应一些事件：按钮点击、接收网络消息、属性变化等等，但是这些事件在代码中的表现形式却不一样：如target-action、代理方法、KVO、回调或其它，这时ReactiveCocoa的作用就体现出来了。它的目的就是定义一个统一的事件处理接口，这样事件处理可以非常简单地进行链接、过滤和组合。</p>
 
-<h4>ReactiveCocoa的特点</h4>
+<h4><a name="h_2">ReactiveCocoa的特点</a></h4>
 
 <p>ReactiveCocoa的核心是Signal。Signal是信号，是一个事件流。Signal获取到数据后，会调用Subscriber的sendNext, sendComplete, sendError方法来传送数据给Subscriber。Signal是很灵活的，它可以被修改(map)，过滤(filter)，叠加(combine)，串联(chain)。<br>
 这样讲得也太过于抽象了吧^_^，我自己也不知道自己在说什么。<br>
@@ -179,7 +187,13 @@ git push origin source
 <li>响应式编程：在计算机中，响应式编程是一种面向数据流和变化传播的编程范式。这意味着可以在编程语言中很方便地表达静态或动态的数据流，而相关的计算模型会自动将变化的值通过数据流进行传播。例如，在命令式编程环境中，a = b + c 表示将表达式的结果赋给a，而之后改变b或c的值不会影响a。但在响应式编程中，a的值会随着b或c的更新而更新。</li>
 Reactive的特性使得可以随时响应变化。Functional的特性使得他们可以串起来。ReactiveCocoa就是他们的结合体。</p>
 
-<h4>ReactiveCocoa的引入</h4>
+<h4><a name="h_3">ReactiveCocoa试图解决什么问题</a></h4>
+
+<p>1.传统iOS开发过程中，状态以及状态之间依赖过多的问题<br>
+2.传统MVC架构的问题：Controller比较复杂，可测试性差<br>
+3.提供统一的消息传递机制</p>
+
+<h4><a name="h_4">ReactiveCocoa的引入</a></h4>
 
 <p>添加ReactiveCocoa框架到我们工程的最简单的方法是使用Cocoapods。我们新建一个项目LCLStudyProject。在控制进入该项目下，输入以下命令：<code>pod init</code> 它会自动创建一个名为Podfile的空文件,打开并添加如下信息:</p>
 
@@ -270,13 +284,7 @@ Integrating client project
 
 <p>基本引入使用讲得差不多了，我们继续吧！！！</p>
 
-<h4>ReactiveCocoa试图解决什么问题</h4>
-
-<p>1.传统iOS开发过程中，状态以及状态之间依赖过多的问题<br>
-2.传统MVC架构的问题：Controller比较复杂，可测试性差<br>
-3.提供统一的消息传递机制</p>
-
-<h4>ReactiveCocoa的使用</h4>
+<h4><a name="h_5">ReactiveCocoa的使用</a></h4>
 
 <p>RAC在应用中大量使用了block，由于Objective-C语言的内存管理是基于引用计数的，为了避免循环引用问题，在block中如果要引用self，需要使用@weakify(self)和@strongify(self)来避免强引用。另外，在使用时应该注意block的嵌套层数，不恰当的滥用多层嵌套block可能给程序的可维护性带来灾难。</p>
 
