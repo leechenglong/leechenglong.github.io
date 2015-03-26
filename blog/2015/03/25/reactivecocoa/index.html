@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>ReactiveCocoa - Lee</title>
+  <title>ReactiveCocoa 入门 - Lee</title>
   <meta name="author" content="LiChenglong">
 
   
-  <meta name="description" content="什么是ReactiveCocoa ReactiveCocoa（其简称为RAC）是由Github 开源的一个应用于iOS和OS X开发的新框架。RAC具有函数式编程和响应式编程的特性。它主要吸取了.Net的 Reactive Extensions的设计和实现。 &hellip;">
+  <meta name="description" content="什么是ReactiveCocoa ReactiveCocoa（RAC）是一个基于Functional Reactive Programming编程思想的Objective-C实现的由Github开源的应用于iOS和OS X开发的新框架。它主要吸取了.Net的 Reactive &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -69,7 +69,7 @@
   
   <header>
     
-      <h1 class="entry-title">ReactiveCocoa</h1>
+      <h1 class="entry-title">ReactiveCocoa 入门</h1>
     
     
       <p class="meta">
@@ -90,7 +90,104 @@
 
 <div class="entry-content"><h4>什么是ReactiveCocoa</h4>
 
-<p>ReactiveCocoa（其简称为RAC）是由Github 开源的一个应用于iOS和OS X开发的新框架。RAC具有函数式编程和响应式编程的特性。它主要吸取了.Net的 Reactive Extensions的设计和实现。</p>
+<p>ReactiveCocoa（RAC）是一个基于Functional Reactive Programming编程思想的Objective-C实现的由Github开源的应用于iOS和OS X开发的新框架。它主要吸取了.Net的 Reactive Extensions的设计和实现。通常我们在编写iOS代码时，大部分代码都是在响应一些事件：按钮点击、接收网络消息、属性变化等等，但是这些事件在代码中的表现形式却不一样：如target-action、代理方法、KVO、回调或其它，这时ReactiveCocoa的作用就体现出来了。它的目的就是定义一个统一的事件处理接口，这样事件处理可以非常简单地进行链接、过滤和组合。</p>
+
+<h4>ReactiveCocoa的引入</h4>
+
+<p>添加ReactiveCocoa框架到我们工程的最简单的方法是使用Cocoapods。我们新建一个项目LCLStudyProject。在控制进入该项目下，输入以下命令：<code>pod init</code> 它会自动创建一个名为Podfile的空文件,打开并添加如下信息:</p>
+
+<pre>platform :ios, '6.0'
+inhibit_all_warnings!
+xcodeproj 'LCLStudyProject'
+
+target :LCLStudyProject do
+    pod 'ReactiveCocoa', '~> 2.3.1'
+end
+
+post_install do |installer|
+installer.project.targets.each do |target|
+puts "#{target.name}"
+end
+
+end</pre>
+
+
+<p>配置完成后保存文件，打开终端并转到工程所在目录，然后输入以下命令：</p>
+
+<pre>pod install</pre>
+
+
+<p>然后终端会有如下输出:</p>
+
+<pre>Analyzing dependencies
+Downloading dependencies
+Installing ReactiveCocoa (2.3.1)
+Generating Pods project
+Pods-LCLStudyProject-ReactiveCocoa
+Pods-LCLStudyProject
+Integrating client project
+
+[!] From now on use `LCLStudyProject.xcworkspace`.</pre>
+
+
+<p>这表示已经下载了ReactiveCocoa框架，同时Cocoapods创建了一个Xcode workspace，同时将框架整合到了我们的工程中。打开新生成的workspace文件(LCLStudyProject.xcworkspace)，将看到如下的工程结构：<br>
+<img src="/images/LCLStudyProject_ReactiveCocoa.png" alt="Alt text" />
+<br>做完这一切后，我们就可以开始玩了，哈哈。<br>
+打开程序的初始视图控制器LCLStudyReactiveCocoaViewController.m文件，在文件头部导入以下头文件：
+<code>#import &ldquo;ReactiveCocoa.h&rdquo;</code>
+新建属性：</p>
+
+<pre>@property (strong, nonatomic) NSString *username;</pre>
+
+
+<p>在viewDidLoad方法里面写上：</p>
+
+<pre>
+    @weakify(self);
+    
+    [RACObserve(self_weak_, username) subscribeNext:^(NSString *newName) {
+        NSLog(@"property_username:%@", newName);
+    }];
+</pre>
+
+
+<p>定义一个定时器来修改username的值：</p>
+
+<pre>
+@interface LCLStudyReactiveCocoaViewController (){
+
+    NSTimer *timer;
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    timer = [NSTimer timerWithTimeInterval:20.0 target:self selector:@selector(updateNameAction)userInfo:nil repeats:YES];
+    [[NSRunLoop  currentRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
+}
+
+- (void)updateNameAction{
+    int ttt = random()%5;
+    self.username = [NSString stringWithFormat:@"%d", ttt];
+}
+</pre>
+
+
+<p>运行程序，我们可以看到控制台会有如下输出：</p>
+
+<pre>
+2015-03-26 17:10:08.771 LCLStudyProject[16137:236449] property_username:3
+2015-03-26 17:10:28.771 LCLStudyProject[16137:236449] property_username:1
+2015-03-26 17:10:48.771 LCLStudyProject[16137:236449] property_username:2
+2015-03-26 17:11:08.772 LCLStudyProject[16137:236449] property_username:0
+</pre>
+
+
+<p>基本引入使用讲得差不多了，我们继续吧！！！</p>
+
+<h4>ReactiveCocoa的特点</h4>
+
+<p>RAC在应用中大量使用了block，由于Objective-C语言的内存管理是基于引用计数的，为了避免循环引用问题，在block中如果要引用self，需要使用@weakify(self)和@strongify(self)来避免强引用。另外，在使用时应该注意block的嵌套层数，不恰当的滥用多层嵌套block可能给程序的可维护性带来灾难。
+RAC具有两个重要的特性：
+<li>函数式编程：利用高阶函数，即将函数作为其它函数的参数。</li></p>
 
 <h4>ReactiveCocoa试图解决什么问题</h4>
 
@@ -98,9 +195,7 @@
 2.传统MVC架构的问题：Controller比较复杂，可测试性差<br>
 3.提供统一的消息传递机制</p>
 
-<h4>ReactiveCocoa的特点</h4>
-
-<p>RAC在应用中大量使用了block，由于Objective-C语言的内存管理是基于引用计数 的，为了避免循环引用问题，在block中如果要引用self，需要使用@weakify(self)和@strongify(self)来避免强引用。另外，在使用时应该注意block的嵌套层数，不恰当的滥用多层嵌套block可能给程序的可维护性带来灾难。</p>
+<p><li>响应式编程：关注于数据流及变化的传播。</li></p>
 </div>
 
 
@@ -157,7 +252,7 @@
       </li>
     
       <li class="post">
-        <a href="/blog/2015/03/25/reactivecocoa/">ReactiveCocoa</a>
+        <a href="/blog/2015/03/25/reactivecocoa/">ReactiveCocoa 入门</a>
       </li>
     
   </ul>
