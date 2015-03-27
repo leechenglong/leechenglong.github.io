@@ -27,4 +27,10 @@
   <url>
     <loc>http://leechenglong.github.io/super-awesome/page.html</loc>
   </url>
+  <url>
+    <loc>http://leechenglong.github.io/blog/categories/reactivecocoa/</loc>
+  </url>
+  <url>
+    <loc>http://leechenglong.github.io/blog/categories/octopress/</loc>
+  </url>
 </urlset>

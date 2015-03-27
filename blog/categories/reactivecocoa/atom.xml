@@ -1,99 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
 
-<!DOCTYPE html>
-<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
-<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
-<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
-<head>
-  <meta charset="utf-8">
-  <title>Lee</title>
-  <meta name="author" content="LiChenglong">
-
-  
-  <meta name="description" content="本部分我们将要开发的是一个称为BIP搜索程序，用于搜索同事资料。同时我们需要通过Cocoapods来下载依赖库，这个过程与之前的ReactiveCocoa入门教程说的相同。完成之后，运行程序，将得到下面的界面：&lt;!—more—> 验证搜索框
-首先我们来校验输入框的字符长度是否大于2。 &hellip;&#8221;>
-  
-
-  <!-- http://t.co/dKP3o1e -->
-  <meta name="HandheldFriendly" content="True">
-  <meta name="MobileOptimized" content="320">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  
-  <link rel="canonical" href="http://leechenglong.github.io/">
-  <link href="/favicon.png" rel="icon">
-  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <link href="/atom.xml" rel="alternate" title="Lee" type="application/atom+xml">
-  <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
-  <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
-<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-
-  
-
-</head>
-
-<body   >
-  <header role="banner"><hgroup>
-  <h1><a href="/">Lee</a></h1>
-  
-    <h2>The Road to Structure Designer</h2>
-  
-</hgroup>
-
-</header>
-  <nav role="navigation"><ul class="subscription" data-subscription="rss">
-  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
-  
-</ul>
-  
-<form action="https://github.com/search" method="get">
-  <fieldset role="search">
-    <input type="hidden" name="sitesearch" value="leechenglong.github.io">
-    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
-  </fieldset>
-</form>
-  
-<ul class="main-navigation">
-    <li><a href="/">Home</a></li>
-  <li><a href="/blog/archives">Archives</a></li>
-  <li><a href="/about">About</a></li>
-</ul>
-
-</nav>
-  <div id="main">
-    <div id="content">
-      <div class="blog-index">
-  
-  
-  
-    <article>
-      
-  <header>
+  <title><![CDATA[Category: Reactivecocoa | Lee]]></title>
+  <link href="http://leechenglong.github.io/blog/categories/reactivecocoa/atom.xml" rel="self"/>
+  <link href="http://leechenglong.github.io/"/>
+  <updated>2015-03-27T23:18:25+08:00</updated>
+  <id>http://leechenglong.github.io/</id>
+  <author>
+    <name><![CDATA[LiChenglong]]></name>
     
-      <h1 class="entry-title"><a href="/blog/2015/03/27/reactivecocoashi-li-ying-yong/">ReactiveCocoa实例应用</a></h1>
-    
-    
-      <p class="meta">
-        
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
 
-
-
-
-<time class='entry-date' datetime='2015-03-27T16:55:29+08:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>27</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>4:55 pm</span></time>
-        
-           | <a href="/blog/2015/03/27/reactivecocoashi-li-ying-yong/#disqus_thread"
-             data-disqus-identifier="http://leechenglong.github.io/blog/2015/03/27/reactivecocoashi-li-ying-yong/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>本部分我们将要开发的是一个称为BIP搜索程序，用于搜索同事资料。同时我们需要通过Cocoapods来下载依赖库，这个过程与之前的ReactiveCocoa入门教程说的相同。完成之后，运行程序，将得到下面的界面：<br>&lt;!—more—>
-<img src="/images/ReactiveCocoa/LCLStudyProject_ReactiveCocoa_search.png" width="256" height="454"><br>
+  
+  <entry>
+    <title type="html"><![CDATA[ReactiveCocoa实例应用]]></title>
+    <link href="http://leechenglong.github.io/blog/2015/03/27/reactivecocoashi-li-ying-yong/"/>
+    <updated>2015-03-27T16:55:29+08:00</updated>
+    <id>http://leechenglong.github.io/blog/2015/03/27/reactivecocoashi-li-ying-yong</id>
+    <content type="html"><![CDATA[<p>本部分我们将要开发的是一个称为BIP搜索程序，用于搜索同事资料。同时我们需要通过Cocoapods来下载依赖库，这个过程与之前的ReactiveCocoa入门教程说的相同。完成之后，运行程序，将得到下面的界面：<br>&lt;!—more—>
+<img src="http://leechenglong.github.io/images/ReactiveCocoa/LCLStudyProject_ReactiveCocoa_search.png" width="256" height="454"><br>
 验证搜索框<br>
 首先我们来校验输入框的字符长度是否大于2。我们在LCLBipSearchViewController.m的viewDidLoad方法下面添加以下代码：</p>
 
@@ -118,9 +44,9 @@
 
 
 <p>这段代码通过信号来检测输入是否有效，并设置相应的输入框背影颜色值。运行后，可以看到如下效果：<br>
-<img src="/images/ReactiveCocoa/LCLStudyProject_ReactiveCocoa_text.png" width="256" height="454"><br>
+<img src="http://leechenglong.github.io/images/ReactiveCocoa/LCLStudyProject_ReactiveCocoa_text.png" width="256" height="454"><br>
 其管道流程图如下所示：<br>
-<img src="/images/ReactiveCocoa/TextValidationPipeline.png"><br>
+<img src="http://leechenglong.github.io/images/ReactiveCocoa/TextValidationPipeline.png"><br>
 rac_textSignal在每次输入时发出next事件，并包含当前输入框的文本。然后map操作将其转换为颜色值，最后subscribeNext:获取这个颜色值并用它来设置输入框的背景颜色。</p>
 
 <h4>内存管理</h4>
@@ -175,7 +101,7 @@ RACDisposable *subscripion =
 
 <p>宏@weakify与@strongify在Extended Objective-C库中引用，它们包含在ReactiveCocoa框架中。@weakify允许我们创建一些影子变量，它是都是弱引用(可以同时创建多个)，@strongify允许创建变量的强引用，这些变量是先前传递给@weakify的。<br>
 最后需要注意的是，当在block中使用实例变量时，block同样会捕获self的一个强引用。我们可以打开编译器警告，来提示我们这种情况。如下所求来处理<br>
-<img src="/images/ReactiveCocoa/AvoidRetainSelf.png"><br></p>
+<img src="http://leechenglong.github.io/images/ReactiveCocoa/AvoidRetainSelf.png"><br></p>
 
 <h4>请求登陆</h4>
 
@@ -262,7 +188,7 @@ RACDisposable *subscripion =
 
 
 <p>当前管道如下图所示：<br>
-<img src="/images/ReactiveCocoa/PipelineWithThen.png"><br>
+<img src="http://leechenglong.github.io/images/ReactiveCocoa/PipelineWithThen.png"><br>
 现在我们有一个发送搜索文本的信号了，是时候用它来搜索了。接下来才是正题。<br>
 接下来创建一个基于请求的信号。在LCLBipSearchViewController.m中，添加以下方法：</p>
 
@@ -321,9 +247,9 @@ RACDisposable *subscripion =
 
 <p>现在一定想把返回的JSON数据显示到UI上了吧，不过，在此之前我们还有一件事情需要处理。要了解这是什么，我们还需要探索一下。<br>
 在下图的subscribeNext:error:中打个断点：<br>
-<img src="/images/ReactiveCocoa/LCLStudyProject_ReactiveCocoa_dot.png"><br>
+<img src="http://leechenglong.github.io/images/ReactiveCocoa/LCLStudyProject_ReactiveCocoa_dot.png"><br>
 重新运行程序,当程序运行到断点位置时可以看到类似于下图的场景：<br>
-<img src="/images/ReactiveCocoa/LCLStudyProject_ReactiveCocoa_Thread.png"><br>
+<img src="http://leechenglong.github.io/images/ReactiveCocoa/LCLStudyProject_ReactiveCocoa_Thread.png"><br>
 注意，从左侧的线程列表中我们可以看到debugger到的代码并没有运行在主线程，即线程Thread 1。记住，更新UI的操作一定得在主线程中操作；因此，如果要在UI上显示用户列表，则必须切换线程。<br>
 这说明了ReactiveCocoa框架的一个重要点。上面显示的操作是在信号初始发出事件时的那个线程执行。尝试在管道的其它步骤添加断点，我们会很惊奇的发现它们会运行在多个不同的线程上。<br>
 因此，我们应该如何来更新UI呢？当然ReactiveCocoa也为我们解决了这个问题。我们只需要在flattenMap:后面添加deliverOn:操作：</p>
@@ -348,7 +274,7 @@ RACDisposable *subscripion =
 
 
 <p>现在重新运行，此时我们可以看到subscribeNext:error:是运行在主线程了。<br>
-<img src="/images/ReactiveCocoa/LCLStudyProject_ReactiveCocoa_main.png"><br>
+<img src="http://leechenglong.github.io/images/ReactiveCocoa/LCLStudyProject_ReactiveCocoa_main.png"><br>
 这样我们就可以安全地更新我们的UI了，在viewDidLoad代码中做如下修改：</p>
 
 <pre>
@@ -376,7 +302,7 @@ RACDisposable *subscripion =
 
 
 <p>运行程序后我们可以看到以下UI：<br>
-<img src="/images/ReactiveCocoa/LCLStudyProject_ReactiveCocoa_show.png" width="256" height="454"><br></p>
+<img src="http://leechenglong.github.io/images/ReactiveCocoa/LCLStudyProject_ReactiveCocoa_show.png" width="256" height="454"><br></p>
 
 <h4>节流</h4>
 
@@ -419,7 +345,7 @@ RACDisposable *subscripion =
 <p>throttle操作只有在两次next事件间隔指定的时间时才会发送第二个next事件。相当简单吧。运行程序看看效果吧。<br></p>
 
 <p>在庆祝胜利前，看看程序最终的管道是值得的。<br>
-<img src="/images/ReactiveCocoa/CompletePipeline.png"><br></p>
+<img src="http://leechenglong.github.io/images/ReactiveCocoa/CompletePipeline.png"><br></p>
 
 <h4>小结</h4>
 
@@ -431,206 +357,15 @@ RACDisposable *subscripion =
 <hr />
 
 <p>Deeply thanks all the people who make me grow up!</p>
-</div>
+]]></content>
+  </entry>
   
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/03/25/macda-jian-ji-yu-githubde-octopressjian-yi-jiao-cheng/">How to Build Octopress Based on Github</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-03-25T16:25:03+08:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>25</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>4:25 pm</span></time>
-        
-           | <a href="/blog/2015/03/25/macda-jian-ji-yu-githubde-octopressjian-yi-jiao-cheng/#disqus_thread"
-             data-disqus-identifier="http://leechenglong.github.io/blog/2015/03/25/macda-jian-ji-yu-githubde-octopressjian-yi-jiao-cheng/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h4>目录</h4>
-
-<p><a href="#h_1">1.Install Ruby</a></br>
-<a href="#h_2">2.Install Octopress</a></br>
-<a href="#h_3">3.Configure Octopress</a></br>
-<a href="#h_4">4.Configure Disqus Plugin</a></br>
-<a href="#h_5">5.Configure Things related to Github</a></br>
-<a href="#h_6">6.Deploy The Blog to Github</a></br>
-<a href="#h_7">7.Write Blog</a></br>
-<a href="#h_8">8.Change Theme</a></br>
-<a href="#h_9">9.Submite codes for backup</a></br></p>
-
-<p>Notice：Make sure that you have installed Git and Ruby1.9.3. Then install rbenv via brew and use rbven to install Ruby. The local deployed environment is in the MAC OS X system under Yosemite 10.10.2.</p>
-
-<h4><a name="h_1">1.Install Ruby</a></h4>
-
-<p><li>brew install rbenv </li>
-<li>brew install ruby-build</li>
-<li>rbenv install 1.9.3-p0</li>
-<li>rbenv rehash</li>&lt;!—more—></p>
-
-<h4><a name="h_2">2.Install Octopress</a></h4>
-
-<p><li>git clone git://github.com/imathis/octopress.git octopress</li>
-<li>cd octopress</li>
-<li>gem install bundler</li>
-<li>rbenv rehash</li>
-<li>bundle install //will install a lot of package⋯⋯</li>
-<li>rake install</li></p>
-
-<h4><a name="h_3">3.Configure Octopress</a></h4>
-
-<p>Edit URL/Title/Subtitle/Author in the file, called &ldquo;config.yml&rdquo;.<br>
-You&rsquo;d better delete all the infomation, related to Twitter, or the Page&rsquo;ll be loaded slowly because of the GFW。By the same way, delete the words, customized by Google in the file, called &ldquo;head.html&rdquo;, which can be found in the path &ldquo;/source/_includes/custom/head.html&rdquo;.</p>
-
-<h4><a name="h_4">4.Configure Disqus Plugin</a></h4>
-
-<p>Disqus is a plugin, builded in Octopress, which can be opend in the file &ldquo;config.yml&rdquo;. For example: find out the next words,<br></p>
-
-<pre>#Disqus comments<br>
-disqus_short_name: <br>
-disqus_show_comment_count: false</pre>
-
-
-<p>then fill in with <a href="https://disqus.com/">disqus</a> name and set disqus_show_comment_count true.【The Disqus name should be related to &lsquo;username.github.com&#8217;】</p>
-
-<h4><a name="h_5">5.Configure Things related to Github</a></h4>
-
-<p>Create ssh in the local environment
-<li>cd ~/.ssh</li>
-<li>ssh-keygen -t rsa -C X //X is the regist Email in Github</li>
-<li>when it throws out: Enter file in which to save the key (/Users/twer/.ssh/id_rsa): just clik the space button and then click enter</li>
-<li>when it throws out: Enter passphrase (empty for no passphrase), just input your Github&rsquo;s password. Then if it shows: Enter same passphrase again, don&rsquo;t worry, just input your Github&rsquo;s password again.</li>
-<li>Open the corresponding file &lsquo;.pub&rsquo; int the path &lsquo;~/.ssh&rsquo; and copy all the contents in the file.</li>
-<li>sign in Github and change to Account Settings, select SSH Public Keys.Then Tap add ssh and fill in with the contents, which are copied just now and then save it.</li></p>
-
-<p>Test shh:<br>
->ssh <a href="&#x6d;&#x61;&#105;&#x6c;&#x74;&#x6f;&#x3a;&#x67;&#x69;&#x74;&#x40;&#103;&#x69;&#116;&#104;&#x75;&#x62;&#x2e;&#99;&#111;&#x6d;">&#x67;&#105;&#x74;&#64;&#x67;&#x69;&#x74;&#x68;&#117;&#x62;&#x2e;&#99;&#x6f;&#109;</a>
-<br>Output:</p>
-
-<pre>PTY allocation request failed on channel 0
-Hi username! You've successfully authenticated, but GitHub does not provide shell access.
-Connection to github.com closed.</pre>
-
-
-<p>It means success!</p>
-
-<h4><a name="h_6">6.Deploy The Blog to Github</a></h4>
-
-<p>You can configure the warehouse, created in Github above, by the rake operation under Octopress. For example, we can deploy the Github page by typing the commands like:<br>
-<code>rake setup_github_pages</code><br>
-then it&rsquo;ll show the address like: <code>git@github.com:your_username/your_username.github.com.git</code>. Don&rsquo;t use this, just input yours【Mine is <a href="https://github.com/leechenglong/leechenglong.github.io"><a href="https://github.com/leechenglong/leechenglong.github.io">https://github.com/leechenglong/leechenglong.github.io</a></a>】
-<br>You can use the following commands to deploy your blog:
-<li>rake install  //Installing the default Octopress theme</li>
-<li>rake generate  //Creating a static page. The above and this command is necessary</li>
-<li>rake preview  //Preview in the local environment through typing &lsquo;<a href="http://localhost:4000/">http://localhost:4000/</a>&rsquo; in the browser</li>
-<li>rake deploy  //Deploy your pages or articles</li></p>
-
-<p>Attention：<br>
-Maybe the first time you run &lsquo;rake deploy&rsquo;, it&rsquo;ll show the error like:<br></p>
-
-<pre><code>! [rejected]  master -> master (non-fast-forward)
-error: failed to push some refs to 'https://github.com/leechenglong/leechenglong.github.io'
-hint: Updates were rejected because the tip of your current branch is behind
-hint: its remote counterpart. Merge the remote changes (e.g. 'git pull')
-hint: before pushing again.
-hint: See the 'Note about fast-forwards' in 'git push --help' for details.</code></pre>
-
-
-<p>Don&rsquo;t worry! You can solve it by opening the folder named &lsquo;<em>deploy&rsquo; yourself and forch to push it。For example:
-<li>cd octopress/</em>deploy</li>
-<li>git pull origin +master</li>
-<li>cd ..</li>
-<li>rake deploy</li>
-Finally, you&rsquo;ll fine the error has dismissed.</p>
-
-<h4><a name="h_7">7.Write Blog</a></h4>
-
-<p>You can write an article in the folder &lsquo;source/_posts&rsquo; by the command like:<code>rake new_post[&ldquo;myTitle&rdquo;]</code>. The article is Markdown format and you can edit it through <a href="http://25.io/mou/">Mou</a>.After that you can deploy the article to Github by these steps:
-<li>rake generate</li>
-<li>git add .</li>
-<li>git commit -am &ldquo;Some comment here.&rdquo; </li>
-<li>git push origin source</li>
-<li>rake deploy</li></p>
-
-<h6>New a page</h6>
-
-<p>You can add a page in your blog everywhere and Jekyll will generate a url according to the location of the page  automaticly. For example, if adding a page named about.markdown, it&rsquo;ll generate the url like &lsquo;site.com/about.html&rsquo;.Also if you want a url like &lsquo;site.com/about/&rsquo;, you just need to generate a page like about/index.markdown. Don&rsquo;t worry, Octopress can help you to do this like:
-<li>rake new_page[super-awesome]</li>
-<code>#creates /source/super-awesome/index.markdown</code>
-<li>rake new_page[super-awesome/page.html]</li>
-<code>#creates /source/super-awesome/page.html</code></p>
-
-<h4><a name="h_8">8.Change Theme</a></h4>
-
-<p>The themes is in the folder &lsquo;octopress/.theme&rsquo; and the default theme style is Classic. You can download themes in the Internet and put them in the folder &lsquo;.theme&rsquo;. If the theme name is blog_theme, you can install it by writing command in command center like:<br>
-<code>rake install [&lsquo;blog_theme&rsquo;]</code></p>
-
-<h4><a name="h_9">9.Submite codes for backup</a></h4>
-
-<p>The above steps can only deploy the blog codes to Github, not the Octopress source codes. So in order to write blog wherever and whenever you are, you can push the Octopress source codes to Github under the Source branch. It doesn&rsquo;t need to configure the details that you can keep the local Octopress source codes same with codes in Github after typing the commands like:</p>
-
-<pre>
-git add .<br>
-git commit -m 'Initial source commit'<br>
-git push origin source
-</pre>
-
-
-<h6>Summary</h6>
-
-<p>This article tells us how to setup a blog through Octopress based on Github and introduce the simple ways to post articles or new a page.
-<br><br><br></p>
-
-<hr />
-
-<p>Deeply thanks all the people who make me grow up!</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/03/25/reactivecocoa/">ReactiveCocoa 入门</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-03-25T15:53:18+08:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>25</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>3:53 pm</span></time>
-        
-           | <a href="/blog/2015/03/25/reactivecocoa/#disqus_thread"
-             data-disqus-identifier="http://leechenglong.github.io/blog/2015/03/25/reactivecocoa/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h4>目录</h4>
+  <entry>
+    <title type="html"><![CDATA[ReactiveCocoa 入门]]></title>
+    <link href="http://leechenglong.github.io/blog/2015/03/25/reactivecocoa/"/>
+    <updated>2015-03-25T15:53:18+08:00</updated>
+    <id>http://leechenglong.github.io/blog/2015/03/25/reactivecocoa</id>
+    <content type="html"><![CDATA[<h4>目录</h4>
 
 <p><a href="#h_1">什么是ReactiveCocoa</a></br>
 <a href="#h_2">ReactiveCocoa的特点</a></br>
@@ -665,7 +400,7 @@ Reactive的特性使得可以随时响应变化。Functional的特性使得他�
 
 <p>我们在开发iOS应用时，一个界面元素的状态很可能受多个其它界面元素或后台状态的影响。<br>
 例如，在用户帐户的登录界面，通常会有2个输入框（分别输入帐号和密码）和一个登录按钮。如果我们要加入一个限制条件：当用户输入完帐号和密码，并且登录的网络请求还未发出时，确定按钮才可以点击。通常情况下，我们需要监听这两个输入框的状态变化以及登录的网络请求状态，然后修改另一个控件的状态.<br>
-<img src="/images/ReactiveCocoa/LCLStudyProject_ReactiveCococa_login.png">
+<img src="http://leechenglong.github.io/images/ReactiveCocoa/LCLStudyProject_ReactiveCococa_login.png">
 <br>一般写法如下：</p>
 
 <pre>
@@ -721,7 +456,7 @@ RAC(self.loginButton, enabled) = [RACSignal
 <p>RAC的信号机制很容易将某一个Model变量(或者不单是Model)的变化与界面关联，所以非常容易应用Model-View-ViewModel（MVVM）框架。它跟MVC最大的区别是多了个ViewModel。它直接与View绑定，而且对View一无所知。使用ViewModel的好处是，可以让Controller更加简单和轻便，而且ViewModel相对独立，也更加方便测试和重用。那Controller这时又该做哪些事呢？在MVVM体系中，Controller可以被看成View，所以它的主要工作是处理布局、动画、接收系统事件、展示UI。MVVM还有一个很重要的概念是 data binding，view的呈现需要data，这个data就是由ViewModel提供的，将view的data与ViewModel的data绑定后，将来双方的数据只要一方有变化，另一方就能收到。<br></p>
 
 <p>MVVM把应用程序划分成视图、视图模型和模型三层，如下图所示：<br>
-<img src="/images/ReactiveCocoa/LCLStudyProject_ReactiveCocoa_MVVM.jpg"><br>
+<img src="http://leechenglong.github.io/images/ReactiveCocoa/LCLStudyProject_ReactiveCocoa_MVVM.jpg"><br>
 表面上，这个层次结构还蛮清楚的，但如果你细究每层应该包含什么，事情就没那么简单了。</p>
 
 <p>MVVM模式和MVC模式一样，主要目的是分离视图（View）和模型（Model），有几大优点:<br>
@@ -813,7 +548,7 @@ Integrating client project
 
 
 <p>这表示已经下载了ReactiveCocoa框架，同时Cocoapods创建了一个Xcode workspace，同时将框架整合到了我们的工程中。打开新生成的workspace文件(LCLStudyProject.xcworkspace)，将看到如下的工程结构：<br>
-<img src="/images/ReactiveCocoa/LCLStudyProject_ReactiveCocoa.png" width="170" height="227">
+<img src="http://leechenglong.github.io/images/ReactiveCocoa/LCLStudyProject_ReactiveCocoa.png" width="170" height="227">
 <br>做完这一切后，我们就可以开始玩了，哈哈。<br>
 打开程序的初始视图控制器LCLStudyReactiveCocoaViewController.m文件，在文件头部导入以下头文件：
 <code>#import &ldquo;ReactiveCocoa.h&rdquo;</code>
@@ -984,116 +719,7 @@ Integrating client project
 <hr />
 
 <p>Deeply thanks all the people who make me grow up!</p>
-</div>
+]]></content>
+  </entry>
   
-  
-
-
-    </article>
-  
-  <div class="pagination">
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
-</div>
-<aside class="sidebar">
-  
-    <section>
-    <h1>Category List</h1>
-    <ul id="categories">
-        <li class='category'><a href='/blog/categories/octopress/'>octopress (1)</a></li>
-<li class='category'><a href='/blog/categories/reactivecocoa/'>reactivecocoa (2)</a></li>
-
-    </ul>
-</section>
-<section>
-  <h1>Recent Posts</h1>
-  <ul id="recent_posts">
-    
-      <li class="post">
-        <a href="/blog/2015/03/27/reactivecocoashi-li-ying-yong/">ReactiveCocoa实例应用</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/03/25/macda-jian-ji-yu-githubde-octopressjian-yi-jiao-cheng/">How to Build Octopress Based on Github</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/03/25/reactivecocoa/">ReactiveCocoa 入门</a>
-      </li>
-    
-  </ul>
-</section>
-
-<section>
-  <h1>GitHub Repos</h1>
-  <ul id="gh_repos">
-    <li class="loading">Status updating&#8230;</li>
-  </ul>
-  
-  <a href="https://github.com/leechenglong">@leechenglong</a> on GitHub
-  
-  <script type="text/javascript">
-    $(document).ready(function(){
-        if (!window.jXHR){
-            var jxhr = document.createElement('script');
-            jxhr.type = 'text/javascript';
-            jxhr.src = '/javascripts/libs/jXHR.js';
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(jxhr, s);
-        }
-
-        github.showRepos({
-            user: 'leechenglong',
-            count: 0,
-            skip_forks: true,
-            target: '#gh_repos'
-        });
-    });
-  </script>
-  <script src="/javascripts/github.js" type="text/javascript"> </script>
-</section>
-
-
-
-
-
-  
-</aside>
-
-    </div>
-  </div>
-  <footer role="contentinfo"><p>
-  Copyright &copy; 2015 - LiChenglong -
-  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
-</p>
-
-</footer>
-  
-
-<script type="text/javascript">
-      var disqus_shortname = 'leechenglong';
-      
-        
-        var disqus_script = 'count.js';
-      
-    (function () {
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    }());
-</script>
-
-
-
-
-
-
-
-
-
-
-
-</body>
-</html>
+</feed>

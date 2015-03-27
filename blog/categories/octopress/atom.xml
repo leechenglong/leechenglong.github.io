@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Octopress | Lee]]></title>
+  <link href="http://leechenglong.github.io/blog/categories/octopress/atom.xml" rel="self"/>
+  <link href="http://leechenglong.github.io/"/>
+  <updated>2015-03-27T23:18:25+08:00</updated>
+  <id>http://leechenglong.github.io/</id>
+  <author>
+    <name><![CDATA[LiChenglong]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[How to Build Octopress Based on Github]]></title>
+    <link href="http://leechenglong.github.io/blog/2015/03/25/macda-jian-ji-yu-githubde-octopressjian-yi-jiao-cheng/"/>
+    <updated>2015-03-25T16:25:03+08:00</updated>
+    <id>http://leechenglong.github.io/blog/2015/03/25/macda-jian-ji-yu-githubde-octopressjian-yi-jiao-cheng</id>
+    <content type="html"><![CDATA[<h4>目录</h4>
+
+<p><a href="#h_1">1.Install Ruby</a></br>
+<a href="#h_2">2.Install Octopress</a></br>
+<a href="#h_3">3.Configure Octopress</a></br>
+<a href="#h_4">4.Configure Disqus Plugin</a></br>
+<a href="#h_5">5.Configure Things related to Github</a></br>
+<a href="#h_6">6.Deploy The Blog to Github</a></br>
+<a href="#h_7">7.Write Blog</a></br>
+<a href="#h_8">8.Change Theme</a></br>
+<a href="#h_9">9.Submite codes for backup</a></br></p>
+
+<p>Notice：Make sure that you have installed Git and Ruby1.9.3. Then install rbenv via brew and use rbven to install Ruby. The local deployed environment is in the MAC OS X system under Yosemite 10.10.2.</p>
+
+<h4><a name="h_1">1.Install Ruby</a></h4>
+
+<p><li>brew install rbenv </li>
+<li>brew install ruby-build</li>
+<li>rbenv install 1.9.3-p0</li>
+<li>rbenv rehash</li>&lt;!—more—></p>
+
+<h4><a name="h_2">2.Install Octopress</a></h4>
+
+<p><li>git clone git://github.com/imathis/octopress.git octopress</li>
+<li>cd octopress</li>
+<li>gem install bundler</li>
+<li>rbenv rehash</li>
+<li>bundle install //will install a lot of package⋯⋯</li>
+<li>rake install</li></p>
+
+<h4><a name="h_3">3.Configure Octopress</a></h4>
+
+<p>Edit URL/Title/Subtitle/Author in the file, called &ldquo;config.yml&rdquo;.<br>
+You&rsquo;d better delete all the infomation, related to Twitter, or the Page&rsquo;ll be loaded slowly because of the GFW。By the same way, delete the words, customized by Google in the file, called &ldquo;head.html&rdquo;, which can be found in the path &ldquo;/source/_includes/custom/head.html&rdquo;.</p>
+
+<h4><a name="h_4">4.Configure Disqus Plugin</a></h4>
+
+<p>Disqus is a plugin, builded in Octopress, which can be opend in the file &ldquo;config.yml&rdquo;. For example: find out the next words,<br></p>
+
+<pre>#Disqus comments<br>
+disqus_short_name: <br>
+disqus_show_comment_count: false</pre>
+
+
+<p>then fill in with <a href="https://disqus.com/">disqus</a> name and set disqus_show_comment_count true.【The Disqus name should be related to &lsquo;username.github.com&#8217;】</p>
+
+<h4><a name="h_5">5.Configure Things related to Github</a></h4>
+
+<p>Create ssh in the local environment
+<li>cd ~/.ssh</li>
+<li>ssh-keygen -t rsa -C X //X is the regist Email in Github</li>
+<li>when it throws out: Enter file in which to save the key (/Users/twer/.ssh/id_rsa): just clik the space button and then click enter</li>
+<li>when it throws out: Enter passphrase (empty for no passphrase), just input your Github&rsquo;s password. Then if it shows: Enter same passphrase again, don&rsquo;t worry, just input your Github&rsquo;s password again.</li>
+<li>Open the corresponding file &lsquo;.pub&rsquo; int the path &lsquo;~/.ssh&rsquo; and copy all the contents in the file.</li>
+<li>sign in Github and change to Account Settings, select SSH Public Keys.Then Tap add ssh and fill in with the contents, which are copied just now and then save it.</li></p>
+
+<p>Test shh:<br>
+>ssh <a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#x3a;&#103;&#x69;&#116;&#x40;&#103;&#x69;&#116;&#x68;&#x75;&#98;&#x2e;&#x63;&#111;&#109;">&#x67;&#x69;&#116;&#64;&#x67;&#105;&#x74;&#x68;&#117;&#x62;&#x2e;&#99;&#111;&#109;</a>
+<br>Output:</p>
+
+<pre>PTY allocation request failed on channel 0
+Hi username! You've successfully authenticated, but GitHub does not provide shell access.
+Connection to github.com closed.</pre>
+
+
+<p>It means success!</p>
+
+<h4><a name="h_6">6.Deploy The Blog to Github</a></h4>
+
+<p>You can configure the warehouse, created in Github above, by the rake operation under Octopress. For example, we can deploy the Github page by typing the commands like:<br>
+<code>rake setup_github_pages</code><br>
+then it&rsquo;ll show the address like: <code>git@github.com:your_username/your_username.github.com.git</code>. Don&rsquo;t use this, just input yours【Mine is <a href="https://github.com/leechenglong/leechenglong.github.io"><a href="https://github.com/leechenglong/leechenglong.github.io">https://github.com/leechenglong/leechenglong.github.io</a></a>】
+<br>You can use the following commands to deploy your blog:
+<li>rake install  //Installing the default Octopress theme</li>
+<li>rake generate  //Creating a static page. The above and this command is necessary</li>
+<li>rake preview  //Preview in the local environment through typing &lsquo;<a href="http://localhost:4000/">http://localhost:4000/</a>&rsquo; in the browser</li>
+<li>rake deploy  //Deploy your pages or articles</li></p>
+
+<p>Attention：<br>
+Maybe the first time you run &lsquo;rake deploy&rsquo;, it&rsquo;ll show the error like:<br></p>
+
+<pre><code>! [rejected]  master -> master (non-fast-forward)
+error: failed to push some refs to 'https://github.com/leechenglong/leechenglong.github.io'
+hint: Updates were rejected because the tip of your current branch is behind
+hint: its remote counterpart. Merge the remote changes (e.g. 'git pull')
+hint: before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.</code></pre>
+
+
+<p>Don&rsquo;t worry! You can solve it by opening the folder named &lsquo;<em>deploy&rsquo; yourself and forch to push it。For example:
+<li>cd octopress/</em>deploy</li>
+<li>git pull origin +master</li>
+<li>cd ..</li>
+<li>rake deploy</li>
+Finally, you&rsquo;ll fine the error has dismissed.</p>
+
+<h4><a name="h_7">7.Write Blog</a></h4>
+
+<p>You can write an article in the folder &lsquo;source/_posts&rsquo; by the command like:<code>rake new_post[&ldquo;myTitle&rdquo;]</code>. The article is Markdown format and you can edit it through <a href="http://25.io/mou/">Mou</a>.After that you can deploy the article to Github by these steps:
+<li>rake generate</li>
+<li>git add .</li>
+<li>git commit -am &ldquo;Some comment here.&rdquo; </li>
+<li>git push origin source</li>
+<li>rake deploy</li></p>
+
+<h6>New a page</h6>
+
+<p>You can add a page in your blog everywhere and Jekyll will generate a url according to the location of the page  automaticly. For example, if adding a page named about.markdown, it&rsquo;ll generate the url like &lsquo;site.com/about.html&rsquo;.Also if you want a url like &lsquo;site.com/about/&rsquo;, you just need to generate a page like about/index.markdown. Don&rsquo;t worry, Octopress can help you to do this like:
+<li>rake new_page[super-awesome]</li>
+<code>#creates /source/super-awesome/index.markdown</code>
+<li>rake new_page[super-awesome/page.html]</li>
+<code>#creates /source/super-awesome/page.html</code></p>
+
+<h4><a name="h_8">8.Change Theme</a></h4>
+
+<p>The themes is in the folder &lsquo;octopress/.theme&rsquo; and the default theme style is Classic. You can download themes in the Internet and put them in the folder &lsquo;.theme&rsquo;. If the theme name is blog_theme, you can install it by writing command in command center like:<br>
+<code>rake install [&lsquo;blog_theme&rsquo;]</code></p>
+
+<h4><a name="h_9">9.Submite codes for backup</a></h4>
+
+<p>The above steps can only deploy the blog codes to Github, not the Octopress source codes. So in order to write blog wherever and whenever you are, you can push the Octopress source codes to Github under the Source branch. It doesn&rsquo;t need to configure the details that you can keep the local Octopress source codes same with codes in Github after typing the commands like:</p>
+
+<pre>
+git add .<br>
+git commit -m 'Initial source commit'<br>
+git push origin source
+</pre>
+
+
+<h6>Summary</h6>
+
+<p>This article tells us how to setup a blog through Octopress based on Github and introduce the simple ways to post articles or new a page.
+<br><br><br></p>
+
+<hr />
+
+<p>Deeply thanks all the people who make me grow up!</p>
+]]></content>
+  </entry>
+  
+</feed>
