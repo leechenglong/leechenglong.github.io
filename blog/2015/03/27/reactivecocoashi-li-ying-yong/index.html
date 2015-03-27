@@ -268,7 +268,7 @@ RACDisposable *subscripion =
     
     return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
         
-        NSString  *str = [NSString stringWithFormat:@"%@?api=findstaff&w=%@",@"http://xs.bgy.com.cn/open/handler.ashx", [text encodeWithUTF8]];
+        NSString  *str = [NSString stringWithFormat:@"%@?api=findstaff&w=%@",@"url", [text encodeWithUTF8]];
         
         [[LCLARCBlockNetworkManager sharedLCLARCNetManager] startDownloadWithURLString:str  httpMethod:LCLARCHttpMethodGet useIntelligenceLoader:NO firstResponse:nil progress:nil complete:^(NSString *errorString, NSMutableData *data, NSString *url){
             
