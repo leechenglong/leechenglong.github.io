@@ -4,7 +4,7 @@
   <title><![CDATA[Lee]]></title>
   <link href="http://leechenglong.github.io/atom.xml" rel="self"/>
   <link href="http://leechenglong.github.io/"/>
-  <updated>2015-03-27T17:36:40+08:00</updated>
+  <updated>2015-03-27T22:34:42+08:00</updated>
   <id>http://leechenglong.github.io/</id>
   <author>
     <name><![CDATA[LiChenglong]]></name>
@@ -19,7 +19,7 @@
     <updated>2015-03-27T16:55:29+08:00</updated>
     <id>http://leechenglong.github.io/blog/2015/03/27/reactivecocoashi-li-ying-yong</id>
     <content type="html"><![CDATA[<p>本部分我们将要开发的是一个称为BIP搜索程序，用于搜索同事资料。同时我们需要通过Cocoapods来下载依赖库，这个过程与之前的ReactiveCocoa入门教程说的相同。完成之后，运行程序，将得到下面的界面：<br>
-<img src="http://leechenglong.github.io/images/LCLStudyProject_ReactiveCocoa_search.png" width="256" height="454"><br>
+<img src="http://leechenglong.github.io/images/ReactiveCocoa/LCLStudyProject_ReactiveCocoa_search.png" width="256" height="454"><br>
 验证搜索框<br>
 首先我们来校验输入框的字符长度是否大于2。我们在LCLBipSearchViewController.m的viewDidLoad方法下面添加以下代码：</p>
 
@@ -44,9 +44,9 @@
 
 
 <p>这段代码通过信号来检测输入是否有效，并设置相应的输入框背影颜色值。运行后，可以看到如下效果：<br>
-<img src="http://leechenglong.github.io/images/LCLStudyProject_ReactiveCocoa_text.png" width="256" height="454"><br>
+<img src="http://leechenglong.github.io/images/ReactiveCocoa/LCLStudyProject_ReactiveCocoa_text.png" width="256" height="454"><br>
 其管道流程图如下所示：<br>
-<img src="http://leechenglong.github.io/images/TextValidationPipeline.png"><br>
+<img src="http://leechenglong.github.io/images/ReactiveCocoa/TextValidationPipeline.png"><br>
 rac_textSignal在每次输入时发出next事件，并包含当前输入框的文本。然后map操作将其转换为颜色值，最后subscribeNext:获取这个颜色值并用它来设置输入框的背景颜色。</p>
 
 <h4>内存管理</h4>
@@ -101,7 +101,7 @@ RACDisposable *subscripion =
 
 <p>宏@weakify与@strongify在Extended Objective-C库中引用，它们包含在ReactiveCocoa框架中。@weakify允许我们创建一些影子变量，它是都是弱引用(可以同时创建多个)，@strongify允许创建变量的强引用，这些变量是先前传递给@weakify的。<br>
 最后需要注意的是，当在block中使用实例变量时，block同样会捕获self的一个强引用。我们可以打开编译器警告，来提示我们这种情况。如下所求来处理<br>
-<img src="http://leechenglong.github.io/images/AvoidRetainSelf.png"><br></p>
+<img src="http://leechenglong.github.io/images/ReactiveCocoa/AvoidRetainSelf.png"><br></p>
 
 <h4>请求登陆</h4>
 
@@ -188,7 +188,7 @@ RACDisposable *subscripion =
 
 
 <p>当前管道如下图所示：<br>
-<img src="http://leechenglong.github.io/images/PipelineWithThen.png"><br>
+<img src="http://leechenglong.github.io/images/ReactiveCocoa/PipelineWithThen.png"><br>
 现在我们有一个发送搜索文本的信号了，是时候用它来搜索了。接下来才是正题。<br>
 接下来创建一个基于请求的信号。在LCLBipSearchViewController.m中，添加以下方法：</p>
 
@@ -242,6 +242,121 @@ RACDisposable *subscripion =
      }];
 </pre>
 
+
+<h4>线程</h4>
+
+<p>现在一定想把返回的JSON数据显示到UI上了吧，不过，在此之前我们还有一件事情需要处理。要了解这是什么，我们还需要探索一下。<br>
+在下图的subscribeNext:error:中打个断点：<br>
+<img src="http://leechenglong.github.io/images/ReactiveCocoa/LCLStudyProject_ReactiveCocoa_dot.png"><br>
+重新运行程序,当程序运行到断点位置时可以看到类似于下图的场景：<br>
+<img src="http://leechenglong.github.io/images/ReactiveCocoa/LCLStudyProject_ReactiveCocoa_Thread.png"><br>
+注意，从左侧的线程列表中我们可以看到debugger到的代码并没有运行在主线程，即线程Thread 1。记住，更新UI的操作一定得在主线程中操作；因此，如果要在UI上显示用户列表，则必须切换线程。<br>
+这说明了ReactiveCocoa框架的一个重要点。上面显示的操作是在信号初始发出事件时的那个线程执行。尝试在管道的其它步骤添加断点，我们会很惊奇的发现它们会运行在多个不同的线程上。<br>
+因此，我们应该如何来更新UI呢？当然ReactiveCocoa也为我们解决了这个问题。我们只需要在flattenMap:后面添加deliverOn:操作：</p>
+
+<pre>
+    [[[[[[self_weak_ requestAccessToSLXTSignal]
+         then:^RACSignal *{
+             return self_weak_.textField.rac_textSignal;
+         }]
+        filter:^BOOL(NSString *text) {
+            return [self_weak_ isValidSearchText:text];
+        }] flattenMap:^RACStream *(NSString *text) {
+            return [self_weak_ signalForSearchWithText:text];
+        }]
+      deliverOn:[RACScheduler mainThreadScheduler]]
+     subscribeNext:^(id x) {
+         NSLog(@"%@", x);
+     } error:^(NSError *error) {
+         NSLog(@"An error occurred: %@", error);
+     }];
+</pre>
+
+
+<p>现在重新运行，此时我们可以看到subscribeNext:error:是运行在主线程了。<br>
+<img src="http://leechenglong.github.io/images/ReactiveCocoa/LCLStudyProject_ReactiveCocoa_main.png"><br>
+这样我们就可以安全地更新我们的UI了，在viewDidLoad代码中做如下修改：</p>
+
+<pre>
+    [[[[[[self_weak_ requestAccessToSLXTSignal]
+         then:^RACSignal *{
+             return self_weak_.textField.rac_textSignal;
+         }]
+        filter:^BOOL(NSString *text) {
+            return [self_weak_ isValidSearchText:text];
+        }]
+       flattenMap:^RACStream *(NSString *text) {
+           return [self_weak_ signalForSearchWithText:text];
+       }]
+      deliverOn:[RACScheduler mainThreadScheduler]]
+     subscribeNext:^(NSDictionary *jsonSearchResult) {
+         
+         NSArray *statuses = jsonSearchResult[@"info"];
+         self_weak_.dataSource = [[NSMutableArray alloc] initWithArray:statuses];
+         [self_weak_.tableView reloadData];
+         
+     } error:^(NSError *error) {
+         NSLog(@"An error occurred: %@", error);
+     }];
+</pre>
+
+
+<p>运行程序后我们可以看到以下UI：<br>
+<img src="http://leechenglong.github.io/images/ReactiveCocoa/LCLStudyProject_ReactiveCocoa_show.png" width="256" height="454"><br></p>
+
+<h4>节流</h4>
+
+<p>你可能已经发现每次我们输入一个新的字符时，搜索操作都会立即执行。如果我们快速输入，可能会导致程序在一秒钟内执行了多次搜索操作。这当然是不好的，因为：
+<li>我们多次调用了搜索API，同时扔掉了大部分结果。</li>
+<li>我们不断更新结果会分散用户的注意力。</li>
+<li>我们不断搜索浪费流量</li></p>
+
+<p>一个更好的方案是如果搜索文本在一个较短时间内没有改变时我们再去执行搜索操作，如500毫秒。ReactiveCocoa框架让这一任务变得相当简单。<br>
+打开LCLBipSearchViewController.m并更新管道操作：</p>
+
+<pre>
+    [[[[[[[self_weak_ requestAccessToSLXTSignal]
+          then:^RACSignal *{
+              return self_weak_.textField.rac_textSignal;
+          }]
+         filter:^BOOL(NSString *text) {
+             return [self_weak_ isValidSearchText:text];
+         }]
+        throttle:2]
+       flattenMap:^RACStream *(NSString *text) {
+           return [self_weak_ signalForSearchWithText:text];
+       }]
+      deliverOn:[RACScheduler mainThreadScheduler]]
+     subscribeNext:^(NSDictionary *jsonSearchResult) {
+         
+         NSArray *statuses = jsonSearchResult[@"info"];
+         self_weak_.dataSource = [[NSMutableArray alloc] initWithArray:statuses];
+         [self_weak_.tableView reloadData];
+
+     } error:^(NSError *error) {
+         NSLog(@"An error occurred: %@", error);
+         
+         self_weak_.dataSource = [[NSMutableArray alloc] init];
+         [self_weak_.tableView reloadData];
+     }];
+</pre>
+
+
+<p>throttle操作只有在两次next事件间隔指定的时间时才会发送第二个next事件。相当简单吧。运行程序看看效果吧。<br></p>
+
+<p>在庆祝胜利前，看看程序最终的管道是值得的。<br>
+<img src="http://leechenglong.github.io/images/ReactiveCocoa/CompletePipeline.png"><br></p>
+
+<h4>小结</h4>
+
+<p>这是一个相当复杂的数据流，但可以作为一个响应管道简洁地表示出来。看起来不错吧。如果使用非响应式技术，你会觉得这会有多复杂呢？在这样一个程序中，数据流的流动又会是多难以理解呢？听起来很麻烦吧。但有了ReactiveCocoa，我们不必再考虑这些了。现在我们知道ReactiveCocoa有多棒了吧。</p>
+
+<p>*学习了 <a href="http://southpeak.github.io/blog/2014/08/02/reactivecocoazhi-nan-er-:twittersou-suo-shi-li/">ReactiveCocoa指南二：Twitter搜索实例</a> 之后自己做的demo
+<br><br><br></p>
+
+<hr />
+
+<p>Deeply thanks all the people who make me grow up!</p>
 ]]></content>
   </entry>
   
@@ -307,7 +422,7 @@ disqus_show_comment_count: false</pre>
 <li>sign in Github and change to Account Settings, select SSH Public Keys.Then Tap add ssh and fill in with the contents, which are copied just now and then save it.</li></p>
 
 <p>Test shh:<br>
->ssh <a href="&#109;&#97;&#105;&#108;&#x74;&#x6f;&#58;&#103;&#x69;&#x74;&#x40;&#103;&#105;&#x74;&#104;&#117;&#x62;&#46;&#x63;&#x6f;&#x6d;">&#x67;&#x69;&#116;&#x40;&#103;&#105;&#x74;&#104;&#117;&#x62;&#x2e;&#x63;&#x6f;&#x6d;</a>
+>ssh <a href="&#109;&#x61;&#x69;&#108;&#x74;&#x6f;&#x3a;&#103;&#x69;&#116;&#64;&#103;&#x69;&#116;&#x68;&#x75;&#98;&#x2e;&#99;&#111;&#109;">&#x67;&#x69;&#x74;&#x40;&#103;&#105;&#x74;&#104;&#117;&#98;&#46;&#99;&#111;&#x6d;</a>
 <br>Output:</p>
 
 <pre>PTY allocation request failed on channel 0
@@ -430,7 +545,7 @@ Reactive的特性使得可以随时响应变化。Functional的特性使得他�
 
 <p>我们在开发iOS应用时，一个界面元素的状态很可能受多个其它界面元素或后台状态的影响。<br>
 例如，在用户帐户的登录界面，通常会有2个输入框（分别输入帐号和密码）和一个登录按钮。如果我们要加入一个限制条件：当用户输入完帐号和密码，并且登录的网络请求还未发出时，确定按钮才可以点击。通常情况下，我们需要监听这两个输入框的状态变化以及登录的网络请求状态，然后修改另一个控件的状态.<br>
-<img src="http://leechenglong.github.io/images/LCLStudyProject_ReactiveCococa_login.png">
+<img src="http://leechenglong.github.io/images/ReactiveCocoa/LCLStudyProject_ReactiveCococa_login.png">
 <br>一般写法如下：</p>
 
 <pre>
@@ -486,7 +601,7 @@ RAC(self.loginButton, enabled) = [RACSignal
 <p>RAC的信号机制很容易将某一个Model变量(或者不单是Model)的变化与界面关联，所以非常容易应用Model-View-ViewModel（MVVM）框架。它跟MVC最大的区别是多了个ViewModel。它直接与View绑定，而且对View一无所知。使用ViewModel的好处是，可以让Controller更加简单和轻便，而且ViewModel相对独立，也更加方便测试和重用。那Controller这时又该做哪些事呢？在MVVM体系中，Controller可以被看成View，所以它的主要工作是处理布局、动画、接收系统事件、展示UI。MVVM还有一个很重要的概念是 data binding，view的呈现需要data，这个data就是由ViewModel提供的，将view的data与ViewModel的data绑定后，将来双方的数据只要一方有变化，另一方就能收到。<br></p>
 
 <p>MVVM把应用程序划分成视图、视图模型和模型三层，如下图所示：<br>
-<img src="http://leechenglong.github.io/images/LCLStudyProject_ReactiveCocoa_MVVM.jpg"><br>
+<img src="http://leechenglong.github.io/images/ReactiveCocoa/LCLStudyProject_ReactiveCocoa_MVVM.jpg"><br>
 表面上，这个层次结构还蛮清楚的，但如果你细究每层应该包含什么，事情就没那么简单了。</p>
 
 <p>MVVM模式和MVC模式一样，主要目的是分离视图（View）和模型（Model），有几大优点:<br>
@@ -578,7 +693,7 @@ Integrating client project
 
 
 <p>这表示已经下载了ReactiveCocoa框架，同时Cocoapods创建了一个Xcode workspace，同时将框架整合到了我们的工程中。打开新生成的workspace文件(LCLStudyProject.xcworkspace)，将看到如下的工程结构：<br>
-<img src="http://leechenglong.github.io/images/LCLStudyProject_ReactiveCocoa.png" width="170" height="227">
+<img src="http://leechenglong.github.io/images/ReactiveCocoa/LCLStudyProject_ReactiveCocoa.png" width="170" height="227">
 <br>做完这一切后，我们就可以开始玩了，哈哈。<br>
 打开程序的初始视图控制器LCLStudyReactiveCocoaViewController.m文件，在文件头部导入以下头文件：
 <code>#import &ldquo;ReactiveCocoa.h&rdquo;</code>

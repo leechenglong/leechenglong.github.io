@@ -60,8 +60,8 @@ ReactiveCocoa的使用 什么是ReactiveCocoa ReactiveCocoa（RAC）是一个基
 </form>
   
 <ul class="main-navigation">
-  <li><a href="/">Home</a></li>
   <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/">Blogs</a></li>
   <li><a href="/about">About</a></li>
 </ul>
 
@@ -127,7 +127,7 @@ Reactive的特性使得可以随时响应变化。Functional的特性使得他�
 
 <p>我们在开发iOS应用时，一个界面元素的状态很可能受多个其它界面元素或后台状态的影响。<br>
 例如，在用户帐户的登录界面，通常会有2个输入框（分别输入帐号和密码）和一个登录按钮。如果我们要加入一个限制条件：当用户输入完帐号和密码，并且登录的网络请求还未发出时，确定按钮才可以点击。通常情况下，我们需要监听这两个输入框的状态变化以及登录的网络请求状态，然后修改另一个控件的状态.<br>
-<img src="/images/LCLStudyProject_ReactiveCococa_login.png">
+<img src="/images/ReactiveCocoa/LCLStudyProject_ReactiveCococa_login.png">
 <br>一般写法如下：</p>
 
 <pre>
@@ -183,7 +183,7 @@ RAC(self.loginButton, enabled) = [RACSignal
 <p>RAC的信号机制很容易将某一个Model变量(或者不单是Model)的变化与界面关联，所以非常容易应用Model-View-ViewModel（MVVM）框架。它跟MVC最大的区别是多了个ViewModel。它直接与View绑定，而且对View一无所知。使用ViewModel的好处是，可以让Controller更加简单和轻便，而且ViewModel相对独立，也更加方便测试和重用。那Controller这时又该做哪些事呢？在MVVM体系中，Controller可以被看成View，所以它的主要工作是处理布局、动画、接收系统事件、展示UI。MVVM还有一个很重要的概念是 data binding，view的呈现需要data，这个data就是由ViewModel提供的，将view的data与ViewModel的data绑定后，将来双方的数据只要一方有变化，另一方就能收到。<br></p>
 
 <p>MVVM把应用程序划分成视图、视图模型和模型三层，如下图所示：<br>
-<img src="/images/LCLStudyProject_ReactiveCocoa_MVVM.jpg"><br>
+<img src="/images/ReactiveCocoa/LCLStudyProject_ReactiveCocoa_MVVM.jpg"><br>
 表面上，这个层次结构还蛮清楚的，但如果你细究每层应该包含什么，事情就没那么简单了。</p>
 
 <p>MVVM模式和MVC模式一样，主要目的是分离视图（View）和模型（Model），有几大优点:<br>
@@ -275,7 +275,7 @@ Integrating client project
 
 
 <p>这表示已经下载了ReactiveCocoa框架，同时Cocoapods创建了一个Xcode workspace，同时将框架整合到了我们的工程中。打开新生成的workspace文件(LCLStudyProject.xcworkspace)，将看到如下的工程结构：<br>
-<img src="/images/LCLStudyProject_ReactiveCocoa.png" width="170" height="227">
+<img src="/images/ReactiveCocoa/LCLStudyProject_ReactiveCocoa.png" width="170" height="227">
 <br>做完这一切后，我们就可以开始玩了，哈哈。<br>
 打开程序的初始视图控制器LCLStudyReactiveCocoaViewController.m文件，在文件头部导入以下头文件：
 <code>#import &ldquo;ReactiveCocoa.h&rdquo;</code>
