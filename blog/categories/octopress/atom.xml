@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Octopress | Lee]]></title>
   <link href="http://leechenglong.github.io/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://leechenglong.github.io/"/>
-  <updated>2015-03-27T23:30:17+08:00</updated>
+  <updated>2015-03-27T23:45:31+08:00</updated>
   <id>http://leechenglong.github.io/</id>
   <author>
     <name><![CDATA[LiChenglong]]></name>
@@ -75,7 +75,7 @@ disqus_show_comment_count: false</pre>
 <li>sign in Github and change to Account Settings, select SSH Public Keys.Then Tap add ssh and fill in with the contents, which are copied just now and then save it.</li></p>
 
 <p>Test shh:<br>
->ssh <a href="&#x6d;&#x61;&#105;&#108;&#116;&#111;&#x3a;&#x67;&#105;&#x74;&#x40;&#103;&#x69;&#116;&#104;&#x75;&#98;&#x2e;&#x63;&#x6f;&#x6d;">&#x67;&#x69;&#116;&#64;&#x67;&#105;&#116;&#x68;&#x75;&#x62;&#x2e;&#99;&#x6f;&#x6d;</a>
+>ssh <a href="&#109;&#97;&#x69;&#108;&#116;&#111;&#58;&#103;&#105;&#116;&#x40;&#103;&#105;&#x74;&#104;&#x75;&#x62;&#46;&#99;&#x6f;&#109;">&#103;&#105;&#x74;&#64;&#x67;&#105;&#116;&#x68;&#x75;&#98;&#46;&#x63;&#x6f;&#109;</a>
 <br>Output:</p>
 
 <pre>PTY allocation request failed on channel 0
