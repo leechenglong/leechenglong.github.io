@@ -4,7 +4,7 @@
   <title><![CDATA[Lee]]></title>
   <link href="http://leechenglong.github.io/atom.xml" rel="self"/>
   <link href="http://leechenglong.github.io/"/>
-  <updated>2015-03-27T23:18:25+08:00</updated>
+  <updated>2015-03-27T23:30:17+08:00</updated>
   <id>http://leechenglong.github.io/</id>
   <author>
     <name><![CDATA[LiChenglong]]></name>
@@ -18,8 +18,12 @@
     <link href="http://leechenglong.github.io/blog/2015/03/27/reactivecocoashi-li-ying-yong/"/>
     <updated>2015-03-27T16:55:29+08:00</updated>
     <id>http://leechenglong.github.io/blog/2015/03/27/reactivecocoashi-li-ying-yong</id>
-    <content type="html"><![CDATA[<p>本部分我们将要开发的是一个称为BIP搜索程序，用于搜索同事资料。同时我们需要通过Cocoapods来下载依赖库，这个过程与之前的ReactiveCocoa入门教程说的相同。完成之后，运行程序，将得到下面的界面：<br>&lt;!—more—>
-<img src="http://leechenglong.github.io/images/ReactiveCocoa/LCLStudyProject_ReactiveCocoa_search.png" width="256" height="454"><br>
+    <content type="html"><![CDATA[<p>本部分我们将要开发的是一个称为BIP搜索程序，用于搜索同事资料。同时我们需要通过Cocoapods来下载依赖库，这个过程与之前的ReactiveCocoa入门教程说的相同。完成之后，运行程序，将得到下面的界面：<br></p>
+
+<!--more-->
+
+
+<p><img src="http://leechenglong.github.io/images/ReactiveCocoa/LCLStudyProject_ReactiveCocoa_search.png" width="256" height="454"><br>
 验证搜索框<br>
 首先我们来校验输入框的字符长度是否大于2。我们在LCLBipSearchViewController.m的viewDidLoad方法下面添加以下代码：</p>
 
@@ -384,7 +388,7 @@ RACDisposable *subscripion =
 <p><li>brew install rbenv </li>
 <li>brew install ruby-build</li>
 <li>rbenv install 1.9.3-p0</li>
-<li>rbenv rehash</li>&lt;!—more—></p>
+<li>rbenv rehash</li><!--more--></p>
 
 <h4><a name="h_2">2.Install Octopress</a></h4>
 
@@ -422,7 +426,7 @@ disqus_show_comment_count: false</pre>
 <li>sign in Github and change to Account Settings, select SSH Public Keys.Then Tap add ssh and fill in with the contents, which are copied just now and then save it.</li></p>
 
 <p>Test shh:<br>
->ssh <a href="&#x6d;&#x61;&#105;&#x6c;&#x74;&#x6f;&#x3a;&#x67;&#x69;&#x74;&#x40;&#103;&#x69;&#116;&#104;&#x75;&#x62;&#x2e;&#99;&#111;&#x6d;">&#x67;&#105;&#x74;&#64;&#x67;&#x69;&#x74;&#x68;&#117;&#x62;&#x2e;&#99;&#x6f;&#109;</a>
+>ssh <a href="&#109;&#x61;&#105;&#108;&#x74;&#111;&#x3a;&#103;&#x69;&#x74;&#64;&#103;&#105;&#x74;&#x68;&#x75;&#98;&#x2e;&#x63;&#111;&#x6d;">&#103;&#105;&#x74;&#64;&#x67;&#105;&#x74;&#104;&#x75;&#98;&#46;&#x63;&#111;&#109;</a>
 <br>Output:</p>
 
 <pre>PTY allocation request failed on channel 0
@@ -520,7 +524,10 @@ git push origin source
 
 <h4><a name="h_1">什么是ReactiveCocoa</a></h4>
 
-<p>ReactiveCocoa（RAC）是一个基于Functional Reactive Programming编程思想的Objective-C实现的由Github开源的应用于iOS和OS X开发的新框架。它主要吸取了.Net的 Reactive Extensions的设计和实现。通常我们在编写iOS代码时，大部分代码都是在响应一些事件：按钮点击、接收网络消息、属性变化等等，但是这些事件在代码中的表现形式却不一样：如target-action、代理方法、KVO、回调或其它，这时ReactiveCocoa的作用就体现出来了。它的目的就是定义一个统一的事件处理接口，这样事件处理可以非常简单地进行链接、过滤和组合。&lt;!—more—></p>
+<p>ReactiveCocoa（RAC）是一个基于Functional Reactive Programming编程思想的Objective-C实现的由Github开源的应用于iOS和OS X开发的新框架。它主要吸取了.Net的 Reactive Extensions的设计和实现。通常我们在编写iOS代码时，大部分代码都是在响应一些事件：按钮点击、接收网络消息、属性变化等等，但是这些事件在代码中的表现形式却不一样：如target-action、代理方法、KVO、回调或其它，这时ReactiveCocoa的作用就体现出来了。它的目的就是定义一个统一的事件处理接口，这样事件处理可以非常简单地进行链接、过滤和组合。</p>
+
+<!--more-->
+
 
 <h4><a name="h_2">ReactiveCocoa的特点</a></h4>
 
