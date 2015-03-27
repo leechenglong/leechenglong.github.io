@@ -153,7 +153,7 @@ disqus_show_comment_count: false</pre>
 <li>sign in Github and change to Account Settings, select SSH Public Keys.Then Tap add ssh and fill in with the contents, which are copied just now and then save it.</li></p>
 
 <p>Test shh:<br>
->ssh <a href="&#109;&#97;&#x69;&#x6c;&#x74;&#x6f;&#x3a;&#103;&#105;&#x74;&#x40;&#103;&#x69;&#116;&#104;&#117;&#98;&#x2e;&#99;&#x6f;&#x6d;">&#x67;&#x69;&#116;&#64;&#103;&#x69;&#x74;&#104;&#x75;&#98;&#46;&#x63;&#111;&#x6d;</a>
+>ssh <a href="&#109;&#97;&#105;&#108;&#x74;&#x6f;&#58;&#x67;&#x69;&#116;&#64;&#103;&#105;&#x74;&#104;&#117;&#98;&#46;&#99;&#111;&#x6d;">&#103;&#x69;&#x74;&#x40;&#x67;&#105;&#x74;&#x68;&#x75;&#98;&#x2e;&#x63;&#x6f;&#109;</a>
 <br>Output:</p>
 
 <pre>PTY allocation request failed on channel 0
@@ -503,13 +503,112 @@ Integrating client project
 
 <p>RAC在应用中大量使用了block，由于Objective-C语言的内存管理是基于引用计数的，为了避免循环引用问题，在block中如果要引用self，需要使用@weakify(self)和@strongify(self)来避免强引用。另外，在使用时应该注意block的嵌套层数，不恰当的滥用多层嵌套block可能给程序的可维护性带来灾难。</p>
 
-<p>当一个signal被一个subscriber subscribe后，这个subscriber何时会被移除？答案是当subscriber被sendComplete或sendError时，或者手动调用[disposable dispose]。</p>
+<p>ReactiveCocoa信号发送一个事件流到它们的订阅者中。我们需要知道三种类型的事件：next, error和completed。一个信号可能由于error事件或completed事件而终止，在此之前它会发送很多个next事件。在这一部分中，我们将重点关注next事件。</p>
 
-<p>当subscriber被dispose后，所有该subscriber相关的工作都会被停止或取消，如http请求，资源也会被释放。</p>
+<p>举个简单的例子：</p>
 
-<p>Signal events是线性的，不会出现并发的情况，除非显示地指定Scheduler。所以-subscribeNext:error:completed:里的block不需要锁定或者synchronized等操作，其他的events会依次排队，直到block处理完成。</p>
+<pre>
+@property (strong, nonatomic) NSString *username;
 
-<p>Errors有优先权，如果有多个signals被同时监听，只要其中一个signal sendError，那么error就会立刻被传送给subscriber，并导致signals终止执行。相当于Exception。</p>
+    @weakify(self);
+    
+    [RACObserve(self_weak_, username) subscribeNext:^(NSString *newName) {
+        NSLog(@"property_username:%@", newName);
+    }];
+</pre>
+
+
+<p>过滤：</p>
+
+<pre>
+    [[self_weak_.userNameTextField.rac_textSignal filter:^BOOL(id x){
+    
+        NSString *text = x;
+        
+        return [text hasPrefix:@"lcl"];
+        
+    }] subscribeNext:^(id x){
+        
+        NSLog(@"filter_unameTextField:%@", x);
+    }];
+</pre>
+
+
+<p>映射：</p>
+
+<pre>
+    [[[self_weak_.userNameTextField.rac_textSignal map:^id(id x){
+        NSString *text = x;
+        return [NSNumber numberWithUnsignedLong:text.length];
+        
+    }] filter:^BOOL(NSNumber *x){
+    
+        return [x integerValue]>3;
+        
+    }] subscribeNext:^(id x){
+    
+        NSLog(@"map_filter_unameTextField_length:%@", x);
+    }];
+</pre>
+
+
+<p>组合：</p>
+
+<pre>
+    RACSignal *combineSinal = [RACSignal combineLatest:[NSArray arrayWithObjects:validUserNameSinal, validPasswordSinal, validLoginSignal, nil] reduce:^id(NSNumber *userNameValid, NSNumber *passwordValid, NSNumber *loginValid){
+            
+            return [NSNumber numberWithBool:[userNameValid boolValue] && [passwordValid boolValue] && !loginValid.boolValue];
+        }];
+        
+        [combineSinal subscribeNext:^(NSNumber *x){
+        
+            [self_weak_.loginButton setEnabled:[x boolValue]];
+            [self_weak_.userNameTextField setEnabled:![x boolValue]];
+            [self_weak_.passwordTextField setEnabled:![x boolValue]];
+        }];
+</pre>
+
+
+<p>创建：</p>
+
+<pre>
+- (RACSignal *)signInSignal{
+    
+    @weakify(self);
+    
+    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        
+        [[LCLSignInModule shareLCLSignInModule] signInWithUsername:self_weak_.userNameTextField.text password:self_weak_.passwordTextField.text complete:^(NSDictionary *dic) {
+            
+            [subscriber sendNext:dic];
+            
+            if (dic) {
+                [subscriber sendCompleted];
+            }else{
+                [subscriber sendError:nil];
+            }
+        }];
+        
+        return nil;
+    }];
+}
+</pre>
+
+
+<p>上面的代码创建了一个使用当前用户名与密码登录的信号。现在我们来分解一下这个方法。createSignal:方法用于创建一个信号。描述信号的block是一个信号参数，当信号有一个订阅者时，block中的代码会被执行。</p>
+
+<p>block传递一个实现RACSubscriber协议的subscriber(订阅者)，这个订阅者包含我们调用的用于发送事件的方法；我们也可以发送多个next事件，这些事件由一个error事件或complete事件结束。在上面这种情况下，它发送一个next事件来表示登录是否成功，后续是一个complete事件。</p>
+
+<p>这个block的返回类型是一个RACDisposable对象，它允许我们执行一些清理任务，这些操作可能发生在订阅取消或丢弃时。上面这个这个信号没有任何清理需求，所以返回nil。</p>
+
+<p>其他：
+<li>当一个signal被一个subscriber subscribe后，这个subscriber何时会被移除？答案是当subscriber被sendComplete或sendError时，或者手动调用[disposable dispose]。</li></p>
+
+<p><li>当subscriber被dispose后，所有该subscriber相关的工作都会被停止或取消，如http请求，资源也会被释放。</li></p>
+
+<p><li>Signal events是线性的，不会出现并发的情况，除非显示地指定Scheduler。所以-subscribeNext:error:completed:里的block不需要锁定或者synchronized等操作，其他的events会依次排队，直到block处理完成。</li></p>
+
+<p><li>Errors有优先权，如果有多个signals被同时监听，只要其中一个signal sendError，那么error就会立刻被传送给subscriber，并导致signals终止执行。相当于Exception。</li></p>
 
 <h5>小结</h5>
 
