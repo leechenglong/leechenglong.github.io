@@ -9,7 +9,8 @@
   <meta name="author" content="LiChenglong">
 
   
-  <meta name="description" content="本部分我们将要开发的是一个称为BIP搜索程序，用于搜索同事资料。同时我们需要通过Cocoapods来下载依赖库，这个过程与之前的ReactiveCocoa入门教程说的相同。完成之后，运行程序，将得到下面的界面： ">
+  <meta name="description" content="本部分我们将要开发的是一个称为BIP搜索程序，用于搜索同事资料。同时我们需要通过Cocoapods来下载依赖库，这个过程与之前的ReactiveCocoa入门教程说的相同。完成之后，运行程序，将得到下面的界面： 验证搜索框
+首先我们来校验输入框的字符长度是否大于2。 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -89,7 +90,229 @@
 
 
 <div class="entry-content"><p>本部分我们将要开发的是一个称为BIP搜索程序，用于搜索同事资料。同时我们需要通过Cocoapods来下载依赖库，这个过程与之前的ReactiveCocoa入门教程说的相同。完成之后，运行程序，将得到下面的界面：<br>
-<img src="/images/LCLStudyProject_ReactiveCocoa_search.png" width="320" height="568"><br></p>
+<img src="/images/LCLStudyProject_ReactiveCocoa_search.png" width="256" height="454"><br>
+验证搜索框<br>
+首先我们来校验输入框的字符长度是否大于2。我们在LCLBipSearchViewController.m的viewDidLoad方法下面添加以下代码：</p>
+
+<pre>
+- (BOOL)isValidSearchText:(NSString *)text{
+    return text.length > 5;
+}
+</pre>
+
+
+<p>同时在viewDidLoad方法最后加上以下代码：</p>
+
+<pre>
+    @weakify(self);
+    
+    [[self_weak_.textField.rac_textSignal map:^id(NSString *text) {
+        return [self_weak_ isValidSearchText:text] ? [UIColor whiteColor] : [UIColor redColor];
+    }] subscribeNext:^(UIColor *color) {
+        self_weak_.textField.backgroundColor = color;
+    }];
+</pre>
+
+
+<p>这段代码通过信号来检测输入是否有效，并设置相应的输入框背影颜色值。运行后，可以看到如下效果：<br>
+<img src="/images/LCLStudyProject_ReactiveCocoa_text.png" width="256" height="454"><br>
+其管道流程图如下所示：<br>
+<img src="/images/TextValidationPipeline.png"><br>
+rac_textSignal在每次输入时发出next事件，并包含当前输入框的文本。然后map操作将其转换为颜色值，最后subscribeNext:获取这个颜色值并用它来设置输入框的背景颜色。</p>
+
+<h4>内存管理</h4>
+
+<p>想知道我们创建的管道信号是如何被保存的么？当然，因为它没有被指定给变量或属性，所以它没有增加引用计数，因此注定被销毁？ReactiveCocoa设计的目的之一是允许这样一种编程样式，即管道可以匿名创建。到目前为止，我们的管道都是这么处理的。为了支持这种模式，ReactiveCocoa维护了一个全局的信号集合。如果信号有一个或多个订阅者，它就是可用的。如果所有订阅者都被移除了，信号就被释放了。<br>
+剩下最后一个问题：如何取消对信号的订阅？在一个completed事件或error事件后，一个订阅者会自动将自己移除。手动移除可能通过RACDisposable来完成。RACSignal的所有订阅方法都返回一个RACDisposable实例，我们可以调用它的dispose方法来手动移除订阅者。如下代码所示：</p>
+
+<pre>
+RACSignal *backgroundColorSignal =
+    [self.textField.rac_textSignal
+     map:^id(NSString *text) {
+         return [self isValidSearchText:text] ? [UIColor whiteColor] : [UIColor redColor];
+     }];
+
+RACDisposable *subscripion =
+    [backgroundColorSignal subscribeNext:^(UIColor *color) {
+        self.textField.backgroundColor = color;
+    }];
+// 在某个位置调用
+[subscripion dispose];
+</pre>
+
+
+<p>当然实际上我们不需要这样来写，只需要知道是这么回事就行。</p>
+
+<p>注意：如果我们创建了一个管道，但不去订阅它，则管理永远不会执行，包括任何如doNext:块这样的附加操作。</p>
+
+<h4>避免循环引用</h4>
+
+<p>ReactiveCocoa在幕后做了许多事情，让我们不需要担心信号的内存管理问题，但有一点关于内存管理的问题需要特别注意。我们先来看看下面的代码：</p>
+
+<pre>[[self.textField.rac_textSignal map:^id(NSString *text) {
+        return [self isValidSearchText:text] ? [UIColor whiteColor] : [UIColor redColor];
+    }] subscribeNext:^(UIColor *color) {
+        self.textField.backgroundColor = color;
+    }];</pre>
+
+
+<p>subscribeNext:块使用了self，以获取文本输入域。Block会捕获并保留闭包中的值，因此如果在self与信号之间有一个强引用，则会导致循环引用问题。这是不是问题取决于self对象的生命周期。如果self的生命周期是整个程序生存期，则没问题，好好用吧。但在大多数情况下，它确实是一个问题。<br>
+为了避循环引用，使用weakself.ReactiveCocoa框架给我们提供了一个更好的选择,如下代码所示：</p>
+
+<pre>
+    @weakify(self);
+    
+    [[self_weak_.textField.rac_textSignal map:^id(NSString *text) {
+        return [self_weak_ isValidSearchText:text] ? [UIColor whiteColor] : [UIColor redColor];
+    }] subscribeNext:^(UIColor *color) {
+        self_weak_.textField.backgroundColor = color;
+    }];
+</pre>
+
+
+<p>宏@weakify与@strongify在Extended Objective-C库中引用，它们包含在ReactiveCocoa框架中。@weakify允许我们创建一些影子变量，它是都是弱引用(可以同时创建多个)，@strongify允许创建变量的强引用，这些变量是先前传递给@weakify的。<br>
+最后需要注意的是，当在block中使用实例变量时，block同样会捕获self的一个强引用。我们可以打开编译器警告，来提示我们这种情况。如下所求来处理<br>
+<img src="/images/AvoidRetainSelf.png"><br></p>
+
+<h4>请求登陆</h4>
+
+<p>仍然在这个文件中，添加以下代码：</p>
+
+<pre>
+- (RACSignal *)requestAccessToSLXTSignal{
+    
+    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        
+        NSString *str = [NSString stringWithFormat:@"%@?api=login&userid=%@&pwd=%@", @"url", @"uid", @"password"];
+        
+        [[LCLARCBlockNetworkManager sharedLCLARCNetManager] startDownloadWithURLString:str  httpMethod:LCLARCHttpMethodGet useIntelligenceLoader:NO firstResponse:nil progress:nil complete:^(NSString *errorString, NSMutableData *data, NSString *url){
+            
+            if (data) {
+                NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+                NSLog(@"%@", dic);
+                
+                if ([[NSString stringWithFormat:@"%@", [dic objectForKey:@"ret"]] isEqualToString:@"0"]) {
+                    [subscriber sendNext:[NSNumber numberWithBool:YES]];
+                    [subscriber sendCompleted];
+                }else{
+                    [subscriber sendError:nil];
+                }
+            }else{
+                [subscriber sendError:nil];
+            }
+        } cache:nil];
+        
+        return nil;
+    }];
+}
+</pre>
+
+
+<p>一个信号可以发送三种事件类型：next, completed, error。<br>
+在信号的整个生命周期中，都可能不会发送事件，或者发送一个或多个next事件，其后跟着completed或error事件。<br>
+最后，为了使用这个信号，在viewDidLoad中添加以下代码：</p>
+
+<pre>
+    [[self_weak_ requestAccessToSLXTSignal] subscribeNext:^(id x) {
+         NSLog(@"Access granted");
+     } error:^(NSError *error) {
+         NSLog(@"An error occurred: %@", error);
+     }];
+</pre>
+
+
+<h4>链接信号</h4>
+
+<p>在viewDidLoad中用下面代码来替换当前的管道：</p>
+
+<pre>
+    [[[self_weak_ requestAccessToSLXTSignal]
+      then:^RACSignal *{
+          return self_weak_.textField.rac_textSignal;
+      }]
+     subscribeNext:^(id x) {
+         NSLog(@"%@", x);
+     } error:^(NSError *error) {
+         NSLog(@"An error occurred: %@", error);
+     }];
+</pre>
+
+
+<p>then方法会等到completed事件发出后调用，然后订阅由block参数返回的信号。这有效地将控制从一个信号传递给下一个信号。<br></p>
+
+<p>下一步，我们添加一个filter操作到管道，以移除无效的搜索字符串。在这个实例中，是要求输入长度不小于5：</p>
+
+<pre>
+    [[[[self_weak_ requestAccessToSLXTSignal]
+       then:^RACSignal *{
+           return self_weak_.textField.rac_textSignal;
+       }]
+      filter:^BOOL(NSString *text) {
+          return [self_weak_ isValidSearchText:text];
+      }]
+     subscribeNext:^(id x) {
+         NSLog(@"%@", x);
+     } error:^(NSError *error) {
+         NSLog(@"An error occurred: %@", error);
+     }];
+</pre>
+
+
+<p>当前管道如下图所示：<br>
+<img src="/images/PipelineWithThen.png"><br>
+现在我们有一个发送搜索文本的信号了，是时候用它来搜索了。接下来才是正题。<br>
+接下来创建一个基于请求的信号。在LCLBipSearchViewController.m中，添加以下方法：</p>
+
+<pre>
+- (RACSignal *)signalForSearchWithText:(NSString *)text{
+    
+    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        
+        NSString  *str = [NSString stringWithFormat:@"%@?api=findstaff&w=%@",@"http://xs.bgy.com.cn/open/handler.ashx", [text encodeWithUTF8]];
+        
+        [[LCLARCBlockNetworkManager sharedLCLARCNetManager] startDownloadWithURLString:str  httpMethod:LCLARCHttpMethodGet useIntelligenceLoader:NO firstResponse:nil progress:nil complete:^(NSString *errorString, NSMutableData *data, NSString *url){
+            
+            if (data) {
+                NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+                NSLog(@"%@", dic);
+                
+                if ([[NSString stringWithFormat:@"%@", [dic objectForKey:@"ret"]] isEqualToString:@"0"]) {
+                    [subscriber sendNext:dic];
+                    [subscriber sendCompleted];
+                }else{
+                    [subscriber sendError:nil];
+                }
+            }else{
+                [subscriber sendError:nil];
+            }
+        } cache:nil];
+        
+        return nil;
+    }];
+}
+</pre>
+
+
+<p>在前面我们学习了如何使用flattenMap来将每个next事件映射到一个新的被订阅的信号。这里我们再次使用它们。在viewDidLoad的最后用如下代码更新：</p>
+
+<pre>
+    [[[[[self_weak_ requestAccessToSLXTSignal]
+        then:^RACSignal *{
+            return self_weak_.textField.rac_textSignal;
+        }]
+       filter:^BOOL(NSString *text) {
+           return [self_weak_ isValidSearchText:text];
+       }]
+      flattenMap:^RACStream *(NSString *text ) {
+          return [self_weak_ signalForSearchWithText:text];
+      }]
+     subscribeNext:^(id x) {
+         NSLog(@"%@", x);
+     } error:^(NSError *error) {
+         NSLog(@"An error occurred: %@", error);
+     }];
+</pre>
+
 </div>
 
 
